@@ -515,112 +515,35 @@ button:hover {
         }
     }
 
-/* General Mobile Styles */
+/* Lock Layout for All Screen Sizes */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: scroll; /* Allow horizontal scrolling */
+    scroll-behavior: smooth;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.program img {
+    width: 100%; /* Ensure images scale properly */
+    max-width: none; /* Remove max-width restrictions */
+}
+
+.hero {
+    height: 100vh; /* Keep full-height sections */
+}
+
+/* Override Media Queries */
 @media (max-width: 768px) {
     body {
-        font-size: 14px; /* Adjust font size for readability on small screens */
+        overflow-x: scroll; /* Ensure horizontal scroll */
     }
-
-    .navbar nav ul li {
-        margin: 0 15px; /* Reduce spacing between navbar items */
-    }
-
-    .navbar nav ul li a {
-        font-size: 16px; /* Adjust font size for smaller devices */
-        padding: 10px 5px; /* Reduce padding for better fit */
-    }
-
-    .hero h1 {
-        font-size: 2.5rem; /* Reduce the size of the hero text */
-        padding: 0 10px;
-    }
-
-    .thumbnails img {
-        width: 100px; /* Reduce image size for thumbnails */
-        height: 70px;
-    }
-
     .team-row {
-        flex-wrap: wrap; /* Allow team members to wrap */
-        justify-content: center; /* Center items on smaller screens */
-        gap: 10px;
-    }
-
-    .team-member img {
-        width: 100px; /* Reduce size of circular images */
-        height: 100px;
-    }
-
-    .programlarimiz-container .row {
-        flex-wrap: wrap; /* Allow rows to wrap */
-        justify-content: center;
-        gap: 10px; /* Add spacing between items */
-    }
-
-    .program {
-        width: 45%; /* Adjust width for mobile screens */
-        margin-bottom: 20px;
-    }
-
-    .embedded-videos {
-        flex-direction: column; /* Stack embedded videos vertically */
-        align-items: center;
-    }
-
-    .carousel-track img {
-        height: 70px; /* Reduce size of logos in the carousel */
-    }
-
-    .contact-container {
-        flex-direction: column; /* Stack contact form and info vertically */
-        align-items: center;
-    }
-
-    .contact-form-container, .contact-info {
-        width: 100%; /* Full width for both sections */
-    }
-
-    .contact-info {
-        text-align: center; /* Center-align text */
-        padding: 0;
-        border-left: none;
-    }
-
-    .map-container iframe {
-        height: 300px; /* Reduce map height */
+        flex-wrap: nowrap; /* Prevent wrapping */
     }
 }
-
-/* Additional Adjustments */
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem; /* Further reduce font size for very small screens */
-    }
-
-    .navbar nav ul li {
-        margin: 0 10px; /* Further reduce spacing */
-    }
-
-    .program {
-        width: 100%; /* Make program blocks take full width */
-    }
-
-    .carousel-track img {
-        height: 50px; /* Further reduce logo size */
-    }
-
-    .team-member img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .contact-form input, .contact-form textarea {
-        font-size: 14px; /* Adjust input font size for small screens */
-    }
-
-    .contact-form button {
-        font-size: 16px; /* Adjust button font size */
-    }
-}
-
-
