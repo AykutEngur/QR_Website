@@ -564,3 +564,15 @@ img, video {
     max-width: 100%;
     height: auto; /* Maintain aspect ratio */
 }
+
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    .video-container {
+        grid-template-columns: repeat(4, 1fr); /* Four equal columns on mobile */
+
+/* Optional: Make sure videos are responsive */
+.video-item video {
+    width: 100%; /* Make video fill the container */
+    height: auto; /* Maintain aspect ratio */
+
