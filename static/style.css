@@ -514,3 +514,53 @@ button:hover {
             transform: translateX(-100%);
         }
     }
+
+7/* Styles for tablets and larger devices */
+8@media (min-width: 768px) {
+9    body {
+10        font-size: 18px; /* Larger font size for tablets */
+11        padding: 20px; /* More padding for larger screens */
+12    }
+13}
+14
+15/* Styles for desktops */
+16@media (min-width: 1024px) {
+17    body {
+18        font-size: 20px; /* Even larger font size for desktops */
+19        padding: 30px; /* More padding for desktops */
+20    }
+21}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.item {
+    flex: 1 1 100%; /* Full width on mobile */
+}
+
+@media (min-width: 768px) {
+    .item {
+        flex: 1 1 48%; /* Two items per row on tablets */
+    }
+}
+
+@media (min-width: 1024px) {
+    .item {
+        flex: 1 1 30%; /* Three items per row on desktops */
+    }
+}
+
+@media (max-width: 767px) {
+    .non-essential {
+        display: none; /* Hide non-essential elements on mobile */
+    }
+}
+
+
+img, video {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
