@@ -1,24 +1,32 @@
+/* General Styling */
 /* Genel Stiller */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     scroll-behavior: smooth;
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
-
 a {
     text-decoration: none;
     color: inherit;
 }
 
+/* Navigation Bar */
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }       
-
 /* Navbar */
 .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
     position: sticky;
     top: 0;
     display: flex;
@@ -31,73 +39,76 @@ ul {
     width: 100%;
     box-sizing: border-box;
 }
-
 .navbar nav {
     width: 100%; /* Ensure nav takes the full width */
     display: flex;
     justify-content: center; /* Center the menu items */
 }
-
 .navbar nav ul {
     display: flex;
     margin: 0;
     padding: 0;
 }
-
 .navbar nav ul li {
     margin: 0 25px; /* Adjust space between items */
 }
 
+.navbar a {
 .navbar nav ul li a {
     display: block;
     padding: 15px 0; /* Increase padding for better clickability */
     font-size: 20px; /* Make font size bigger */
     color: white; /* Ensure the text is white */
 }
-
 .navbar nav ul li a:hover {
     color: lightblue;
 }
-
-
-
 .social-icons {
     display: flex;
     gap: 10px;
 }
-
 .social-icons img {
     width: 20px;
     height: 20px;
 }
-
 /* Hero Section */
-
 .hero {
     position: relative;
     height: 100vh;
     background: url('placeholder.jpg') no-repeat center center/cover;
     color: white;
+    text-decoration: none;
+    padding: 10px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
+.navbar a:hover {
+    background-color: #45a049;
+    border-radius: 5px;
 .hero h1 {
     font-size: 4rem;
     margin: 0;
 }
 
+/* Horizontal Scroll Section */
+.horizontal-scroll {
 /* Scrollable Thumbnails */
 .thumbnails {
     display: flex;
     overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+    scroll-behavior: smooth;
     gap: 10px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+.horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
 .thumbnails img {
     width: 150px;
     height: 100px;
@@ -107,38 +118,55 @@ ul {
     transition: transform 0.3s;
 }
 
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: #4CAF50;
+    border-radius: 10px;
 .thumbnails img:hover {
     transform: scale(1.1);
 }
 
+.horizontal-scroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 /* Sections */
 section {
     padding: 60px 20px;
     text-align: center;
 }
 
+.card {
+    display: inline-block;
+    width: 200px;
+    margin: 0 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
 .team, .references, .programs {
     background-color: #f5f5f5;
 }
 
+.card:hover {
+    transform: scale(1.05);
 .section-title {
     font-size: 2rem;
     margin-bottom: 20px;
 }
 
+.card img {
+    width: 100%;
+    height: auto;
 .carousel {
     display: flex;
     overflow-x: auto;
     gap: 15px;
     padding: 10px;
 }
-
 .carousel img {
     width: 300px;
     height: 200px;
     object-fit: cover;
 }
-
 /* Contact Form */
 .contact-form {
     display: flex;
@@ -148,26 +176,42 @@ section {
     margin: auto;
 }
 
+.card-title {
 .contact-form input, .contact-form textarea {
     padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #4CAF50;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
+/* Buttons for scrolling */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4CAF50;
 .contact-form button {
     background-color: blue;
     color: white;
     border: none;
     padding: 10px;
+    border-radius: 50%;
     border-radius: 5px;
     cursor: pointer;
+    z-index: 1000;
     transition: background-color 0.3s;
 }
 
+.scroll-btn:hover {
+    background-color: #45a049;
 .contact-form button:hover {
     background-color: #1EA9DD;
 }
 
+.scroll-btn.left {
+    left: 10px;
 footer {
     padding: 20px;
     text-align: center;
@@ -175,6 +219,8 @@ footer {
     color: white;
 }
 
+.scroll-btn.right {
+    right: 10px;
 /* Social Media Icons */
 .social-media {
     display: flex;
@@ -182,18 +228,19 @@ footer {
     align-items: center;
 }
 
+/* Footer */
+footer {
+    text-align: center;
 .social-media img {
     width: 24px;
     height: 24px;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
 .social-media img:hover {
     transform: scale(1.2);
     opacity: 0.8;
 }
-
 /* Contact Section */
 .contact-container {
     display: flex;
@@ -203,36 +250,37 @@ footer {
     max-width: 1000px;
     margin: auto;
     padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
     gap: 40px;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
 .contact-form-container, .contact-info {
     flex: 1;
     min-width: 300px;
 }
-
 .contact-form {
     display: flex;
     flex-direction: column;
 }
-
 .form-header h3 {
     margin-bottom: 15px;
     font-size: 2rem;
     font-weight: bold;
     color: #007BFF;
 }
-
 .name-fields {
     display: flex;
     gap: 10px;
     margin-bottom: 15px;
 }
-
 .name-fields input {
     flex: 1;
 }
-
 .contact-info {
     font-size: 1.5rem;
     line-height: 1.8;
@@ -241,24 +289,19 @@ footer {
     border-left: 2px solid #ccc;
     color: #007BFF;
 }
-
 .contact-info .highlight {
     font-weight: bold;
 }
-
 .contact-info p {
     margin-bottom: 15px;
 }
-
 textarea {
     margin-bottom: 15px;
     font-size: 1rem;
 }
-
 input, textarea {
     font-size: 1rem;
 }
-
 button {
     background-color: #007BFF;
     color: #fff;
@@ -268,16 +311,13 @@ button {
     font-size: 1.2rem;
     border-radius: 5px;
 }
-
 button:hover {
     background-color: #0056b3;
 }
-
 /* Google Maps Section */
 #google-maps {
     padding: 0;
 }
-
 .map-container {
     margin: 20px auto;
     max-width: 1000px;
@@ -285,40 +325,33 @@ button:hover {
     overflow: hidden;
     border: 2px solid #007BFF;
 }
-
 .map-container iframe {
     width: 100%;
     height: 450px;
     border: none;
     border-radius: 30px;
 }
-
 /* Logo Styling */
 .logo img {
     max-height: 80px;
     width: auto;
     display: block;
 }
-
 .logo {
     flex: 0 1 auto;  /* Ensure logo stays on the left */
     margin-right: auto; /* Pushes logo to the left side */
 }
-
-
 /* Referanslarımız Section Styles */
 .references {
     background-color: #121dde; /* Set the background color */
     padding: 60px 20px; /* Ensure spacing remains consistent */
 }
-
 /* Referanslarımız Section Title */
 .references .section-title {
     color: white; /* Make the title text white */
     font-size: 2.5rem; /* Optional: Slightly increase the font size for emphasis */
     margin-bottom: 30px; /* Adjust spacing below the title */
 }
-
 /* Carousel Styles */
 .references .carousel {
     display: flex;
@@ -326,32 +359,26 @@ button:hover {
     align-items: center; /* Align logos vertically */
     gap: 20px; /* Space between the logos */
 }
-
 /* Logos Styling */
 .references .carousel img {
     max-height: 150px; /* Restrict the height for consistency */
     object-fit: contain; /* Maintain aspect ratio */
 }
-
 /* Prometeon-specific adjustments */
 .references .carousel img.prometeon-logo {
     max-width: 250px; /* Restrict Prometeon logo width */
 }
-
-
 /* Ekibimiz Section */
 .team {
         padding: 60px 20px;
         background-color: #f5f5f5; /* Light background */
         text-align: center;
     }
-
     .section-title {
         font-size: 2rem;
         margin-bottom: 30px;
         color: #121dde;
     }
-
     /* Team Container */
     .team-container {
         display: flex;
@@ -361,6 +388,8 @@ button:hover {
         align-items: center;
     }
 
+    .horizontal-scroll {
+        padding: 5px 0;
     /* Team Rows */
     .team-row {
         display: flex;
@@ -368,6 +397,7 @@ button:hover {
         gap: 20px;
     }
 
+    .card {
     /* Team Member */
     .team-member {
         display: flex;
@@ -375,7 +405,6 @@ button:hover {
         align-items: center;
         text-align: center;
     }
-
     /* Circular Frames for Images */
     .team-member img {
         width: 150px;
@@ -385,27 +414,22 @@ button:hover {
         border: 2px solid #121dde;
         transition: transform 0.3s ease;
     }
-
     .team-member img:hover {
         transform: scale(1.1);
     }
-
     /* Name Styling */
     .team-member p {
         margin-top: 10px;
         font-size: 1rem;
     }
-
     .team-member .name {
         color: #121dde; /* Blue color for the name */
         font-weight: 400;
     }
-
     .team-member .surname {
         font-weight: bold;
         color: #121dde; /* Slightly darker for contrast */
     }
-
     /* Responsive Design */
     @media (max-width: 768px) {
         .team-row {
@@ -414,7 +438,8 @@ button:hover {
         }
     }
 
-
+    .scroll-btn {
+        display: none;
     .programlarimiz-container {
         display: flex;
         flex-direction: column;
@@ -467,7 +492,6 @@ button:hover {
         justify-content: center;
         gap: 20px;
     }
-
       
       .program img:hover {
         transform: scale(1.05);
@@ -514,7 +538,6 @@ button:hover {
             transform: translateX(-100%);
         }
     }
-
 /* Lock Layout for All Screen Sizes */
 body {
     margin: 0;
@@ -522,22 +545,18 @@ body {
     overflow-x: scroll; /* Allow horizontal scrolling */
     scroll-behavior: smooth;
 }
-
 .row {
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap; /* Prevent wrapping */
 }
-
 .program img {
     width: 100%; /* Ensure images scale properly */
     max-width: none; /* Remove max-width restrictions */
 }
-
 .hero {
     height: 100vh; /* Keep full-height sections */
 }
-
 /* Override Media Queries */
 @media (max-width: 768px) {
     body {
@@ -547,63 +566,3 @@ body {
         flex-wrap: nowrap; /* Prevent wrapping */
     }
 }
-
-
-@media only screen and (max-width: 414px) {
-    /* General Adjustments for Small Screens */
-    body {
-        font-size: 14px; /* Adjust font size for readability */
-    }
-
-    .navbar {
-        padding: 10px; /* Reduce padding */
-        font-size: 14px;
-    }
-
-    /* Adjust Team Section */
-    .team-row {
-        flex-wrap: wrap; /* Allow wrapping on small screens */
-        gap: 10px; /* Smaller gap between team members */
-    }
-
-    .team-member {
-        width: 45%; /* Reduce width for smaller screens */
-    }
-
-    /* Adjust Programs Section */
-    .programlarimiz-container .row {
-        flex-wrap: wrap; /* Allow images to wrap into rows */
-        justify-content: center; /* Center content */
-        gap: 10px;
-    }
-
-    .program {
-        width: 45%; /* Make programs smaller */
-    }
-
-    .program img {
-        width: 100%;
-    }
-
-    /* Adjust References Section */
-    .carousel img {
-        max-height: 80px; /* Reduce logo size */
-    }
-
-    /* Embedded Videos */
-    .embedded-videos {
-        flex-direction: column; /* Stack videos vertically */
-    }
-
-    .embedded-videos iframe {
-        width: 90%; /* Make videos fit within the screen */
-        height: 200px; /* Adjust height */
-    }
-
-    /* Contact Section */
-    .contact-container {
-        flex-direction: column; /* Stack items vertically */
-        gap: 15px; /* Add spacing between items */
-    }
-}
-
