@@ -1,32 +1,24 @@
-/* General Styling */
-/* Genel Stiller */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
     scroll-behavior: smooth;
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 a {
     text-decoration: none;
     color: inherit;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-/* Navigation Bar */
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }       
 /* Navbar */
+/* Navigation Bar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
     position: sticky;
     top: 0;
     display: flex;
@@ -34,7 +26,13 @@ ul {
     align-items: center; /* Align the items vertically */
     padding: 10px 20px;
     background-color: #121dde;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
     z-index: 1000;
     width: 100%;
     box-sizing: border-box;
@@ -53,7 +51,6 @@ ul {
     margin: 0 25px; /* Adjust space between items */
 }
 
-.navbar a {
 .navbar nav ul li a {
     display: block;
     padding: 15px 0; /* Increase padding for better clickability */
@@ -76,39 +73,34 @@ ul {
     position: relative;
     height: 100vh;
     background: url('placeholder.jpg') no-repeat center center/cover;
+.navbar a {
     color: white;
-    text-decoration: none;
-    padding: 10px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    text-decoration: none;
+    padding: 10px 15px;
 }
 
-.navbar a:hover {
-    background-color: #45a049;
-    border-radius: 5px;
 .hero h1 {
     font-size: 4rem;
     margin: 0;
+.navbar a:hover {
+    background-color: #45a049;
+    border-radius: 5px;
 }
 
-/* Horizontal Scroll Section */
-.horizontal-scroll {
 /* Scrollable Thumbnails */
 .thumbnails {
+/* Horizontal Scroll Section */
+.horizontal-scroll {
     display: flex;
     overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px 0;
-    scroll-behavior: smooth;
     gap: 10px;
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.7);
 }
-
-.horizontal-scroll::-webkit-scrollbar {
-    height: 8px;
 .thumbnails img {
     width: 150px;
     height: 100px;
@@ -117,22 +109,40 @@ ul {
     cursor: pointer;
     transition: transform 0.3s;
 }
-
-.horizontal-scroll::-webkit-scrollbar-thumb {
-    background-color: #4CAF50;
-    border-radius: 10px;
 .thumbnails img:hover {
     transform: scale(1.1);
+    white-space: nowrap;
+    padding: 10px 0;
+    scroll-behavior: smooth;
 }
 
-.horizontal-scroll::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
 /* Sections */
 section {
     padding: 60px 20px;
     text-align: center;
+.horizontal-scroll::-webkit-scrollbar {
+    height: 8px;
 }
 
+.team, .references, .programs {
+    background-color: #f5f5f5;
+.horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: #4CAF50;
+    border-radius: 10px;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+.horizontal-scroll::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
 .card {
     display: inline-block;
     width: 200px;
@@ -142,31 +152,16 @@ section {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease;
-.team, .references, .programs {
-    background-color: #f5f5f5;
 }
 
-.card:hover {
-    transform: scale(1.05);
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 10px;
-}
 .carousel img {
     width: 300px;
     height: 200px;
     object-fit: cover;
+.card:hover {
+    transform: scale(1.05);
 }
+
 /* Contact Form */
 .contact-form {
     display: flex;
@@ -174,69 +169,69 @@ section {
     gap: 15px;
     max-width: 500px;
     margin: auto;
+.card img {
+    width: 100%;
+    height: auto;
 }
 
-.card-title {
 .contact-form input, .contact-form textarea {
+.card-title {
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     text-align: center;
     font-weight: bold;
     color: #4CAF50;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
+.contact-form button {
+    background-color: blue;
 /* Buttons for scrolling */
 .scroll-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: #4CAF50;
-.contact-form button {
-    background-color: blue;
     color: white;
     border: none;
     padding: 10px;
-    border-radius: 50%;
     border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
-    z-index: 1000;
     transition: background-color 0.3s;
 }
-
-.scroll-btn:hover {
-    background-color: #45a049;
 .contact-form button:hover {
     background-color: #1EA9DD;
+    z-index: 1000;
 }
 
-.scroll-btn.left {
-    left: 10px;
 footer {
     padding: 20px;
     text-align: center;
     background-color: #121dde;
     color: white;
+.scroll-btn:hover {
+    background-color: #45a049;
 }
 
-.scroll-btn.right {
-    right: 10px;
 /* Social Media Icons */
 .social-media {
     display: flex;
     gap: 15px;
     align-items: center;
+.scroll-btn.left {
+    left: 10px;
 }
 
-/* Footer */
-footer {
-    text-align: center;
 .social-media img {
     width: 24px;
     height: 24px;
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
+.scroll-btn.right {
+    right: 10px;
 }
+
 .social-media img:hover {
     transform: scale(1.2);
     opacity: 0.8;
@@ -249,16 +244,12 @@ footer {
     align-items: flex-start;
     max-width: 1000px;
     margin: auto;
+/* Footer */
+footer {
+    text-align: center;
     padding: 20px;
-    background-color: #333;
-    color: white;
-    margin-top: 20px;
     gap: 40px;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navbar {
 .contact-form-container, .contact-info {
     flex: 1;
     min-width: 300px;
@@ -367,7 +358,11 @@ button:hover {
 /* Prometeon-specific adjustments */
 .references .carousel img.prometeon-logo {
     max-width: 250px; /* Restrict Prometeon logo width */
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
 }
+
 /* Ekibimiz Section */
 .team {
         padding: 60px 20px;
@@ -382,22 +377,24 @@ button:hover {
     /* Team Container */
     .team-container {
         display: flex;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
         flex-direction: column;
         gap: 20px;
         justify-content: center;
         align-items: center;
     }
 
-    .horizontal-scroll {
-        padding: 5px 0;
     /* Team Rows */
     .team-row {
         display: flex;
         justify-content: center;
         gap: 20px;
+    .horizontal-scroll {
+        padding: 5px 0;
     }
 
-    .card {
     /* Team Member */
     .team-member {
         display: flex;
@@ -407,6 +404,7 @@ button:hover {
     }
     /* Circular Frames for Images */
     .team-member img {
+    .card {
         width: 150px;
         height: 150px;
         object-fit: cover;
@@ -438,8 +436,6 @@ button:hover {
         }
     }
 
-    .scroll-btn {
-        display: none;
     .programlarimiz-container {
         display: flex;
         flex-direction: column;
@@ -564,5 +560,7 @@ body {
     }
     .team-row {
         flex-wrap: nowrap; /* Prevent wrapping */
+    .scroll-btn {
+        display: none;
     }
 }
