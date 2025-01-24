@@ -1,4 +1,4 @@
-/* Genel Stiller */
+/* General Styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -59,20 +59,7 @@ ul {
     color: lightblue;
 }
 
-
-
-.social-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-icons img {
-    width: 20px;
-    height: 20px;
-}
-
 /* Hero Section */
-
 .hero {
     position: relative;
     height: 100vh;
@@ -89,7 +76,7 @@ ul {
     margin: 0;
 }
 
-/* Scrollable Thumbnails */
+/* Thumbnails Section */
 .thumbnails {
     display: flex;
     overflow-x: auto;
@@ -126,48 +113,100 @@ section {
     margin-bottom: 20px;
 }
 
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 10px;
-}
-
-.carousel img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Contact Form */
-.contact-form {
+/* Program Section */
+.programlarimiz-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: auto;
+    align-items: center;
+    background-color: #329ba8; /* Added background color */
+    padding: 20px 0; /* Optional padding for spacing */
 }
 
-.contact-form input, .contact-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 10px; /* Adjust spacing between items */
 }
 
-.contact-form button {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.program {
+    text-align: center;
+    width: calc(100% / 5 - 10px); /* Adjust to fit 5 items per row */
 }
 
-.contact-form button:hover {
-    background-color: #1EA9DD;
+.program img {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.program img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.program p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #121dde;
+}
+
+/* Embedded Videos Section */
+.embedded-videos-section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.embedded-videos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Team Section */
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #121dde;
+    transition: transform 0.3s ease;
+}
+
+.team-member img:hover {
+    transform: scale(1.1);
+}
+
+.team-member p {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #121dde;
+}
+
+/* Footer */
 footer {
     padding: 20px;
     text-align: center;
@@ -175,375 +214,33 @@ footer {
     color: white;
 }
 
-/* Social Media Icons */
-.social-media {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.social-media img {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.social-media img:hover {
-    transform: scale(1.2);
-    opacity: 0.8;
-}
-
-/* Contact Section */
-.contact-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    gap: 40px;
-}
-
-.contact-form-container, .contact-info {
-    flex: 1;
-    min-width: 300px;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-header h3 {
-    margin-bottom: 15px;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #007BFF;
-}
-
-.name-fields {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.name-fields input {
-    flex: 1;
-}
-
-.contact-info {
-    font-size: 1.5rem;
-    line-height: 1.8;
-    text-align: left;
-    padding-left: 20px;
-    border-left: 2px solid #ccc;
-    color: #007BFF;
-}
-
-.contact-info .highlight {
-    font-weight: bold;
-}
-
-.contact-info p {
-    margin-bottom: 15px;
-}
-
-textarea {
-    margin-bottom: 15px;
-    font-size: 1rem;
-}
-
-input, textarea {
-    font-size: 1rem;
-}
-
-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Google Maps Section */
-#google-maps {
-    padding: 0;
-}
-
-.map-container {
-    margin: 20px auto;
-    max-width: 1000px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 2px solid #007BFF;
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 450px;
-    border: none;
-    border-radius: 30px;
-}
-
-/* Logo Styling */
-.logo img {
-    max-height: 80px;
-    width: auto;
-    display: block;
-}
-
-.logo {
-    flex: 0 1 auto;  /* Ensure logo stays on the left */
-    margin-right: auto; /* Pushes logo to the left side */
-}
-
-
-/* Referanslarımız Section Styles */
-.references {
-    background-color: #121dde; /* Set the background color */
-    padding: 60px 20px; /* Ensure spacing remains consistent */
-}
-
-/* Referanslarımız Section Title */
-.references .section-title {
-    color: white; /* Make the title text white */
-    font-size: 2.5rem; /* Optional: Slightly increase the font size for emphasis */
-    margin-bottom: 30px; /* Adjust spacing below the title */
-}
-
-/* Carousel Styles */
-.references .carousel {
-    display: flex;
-    justify-content: center; /* Center the logos horizontally */
-    align-items: center; /* Align logos vertically */
-    gap: 20px; /* Space between the logos */
-}
-
-/* Logos Styling */
-.references .carousel img {
-    max-height: 150px; /* Restrict the height for consistency */
-    object-fit: contain; /* Maintain aspect ratio */
-}
-
-/* Prometeon-specific adjustments */
-.references .carousel img.prometeon-logo {
-    max-width: 250px; /* Restrict Prometeon logo width */
-}
-
-
-/* Ekibimiz Section */
-.team {
-        padding: 60px 20px;
-        background-color: #f5f5f5; /* Light background */
-        text-align: center;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 30px;
-        color: #121dde;
-    }
-
-    /* Team Container */
-    .team-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Team Rows */
-    .team-row {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    /* Team Member */
-    .team-member {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    /* Circular Frames for Images */
-    .team-member img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid #121dde;
-        transition: transform 0.3s ease;
-    }
-
-    .team-member img:hover {
-        transform: scale(1.1);
-    }
-
-    /* Name Styling */
-    .team-member p {
-        margin-top: 10px;
-        font-size: 1rem;
-    }
-
-    .team-member .name {
-        color: #121dde; /* Blue color for the name */
-        font-weight: 400;
-    }
-
-    .team-member .surname {
-        font-weight: bold;
-        color: #121dde; /* Slightly darker for contrast */
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .team-row {
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-    }
-
-
-    .programlarimiz-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #329ba8; /* Added background color */
-        padding: 20px 0; /* Optional padding for spacing */
-    }
-    
-    
-    .row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
-    
-    .program {
-        text-align: center;
-        width: 18%;
-    }
-    
-    .program img {
-        width: 100%;
-        border-radius: 10px;
-        border: 2px solid white;
-    }
-    
-    .program p {
-        margin-top: 10px;
-        font-size: 20px;
-        color: #121dde;
-    }
-    
-    .embedded-videos-section {
-        margin: 40px 0;
-        text-align: left;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        color: #121dde;
-    }
-    
-    /* Embedded Videos Layout */
-    .embedded-videos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
-
-      
-      .program img:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    .references {
-        background-color: #121dde;
-        padding: 60px 20px;
-        overflow: hidden;
-    }
-    
-    .references .section-title {
-        color: white;
-        font-size: 2.5rem;
-        margin-bottom: 30px;
-    }
-    
-    .carousel {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-    }
-    
-    .carousel-track {
-        display: flex;
-        gap: 10px; /* Adjust spacing between logos */
-        animation: slide-infinite 90s linear infinite;
-        width: max-content; /* Prevent wrapping */
-    }
-    
-    .carousel-track img {
-        height: 100px;
-        object-fit: contain;
-        flex-shrink: 0;
-    }
-    
-    /* Continuous sliding animation */
-    @keyframes slide-infinite {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-
-/* Lock Layout for All Screen Sizes */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: scroll; /* Allow horizontal scrolling */
-    scroll-behavior: smooth;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap; /* Prevent wrapping */
-}
-
-.program img {
-    width: 100%; /* Ensure images scale properly */
-    max-width: none; /* Remove max-width restrictions */
-}
-
-.hero {
-    height: 100vh; /* Keep full-height sections */
-}
-
-/* Override Media Queries */
+/* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        overflow-x: scroll; /* Ensure horizontal scroll */
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
     }
+
+    .program {
+        width: calc(100% / 2 - 10px); /* Adjust to fit 2 items per row */
+    }
+
+    .row {
+        flex-wrap: wrap;
+    }
+
     .team-row {
-        flex-wrap: nowrap; /* Prevent wrapping */
+        flex-wrap: wrap;
     }
+}
+
+/* Ensure Proper Scaling on Mobile */
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    zoom: 1; /* Reset zoom */
+    transform: scale(1); /* Reset scaling */
 }
