@@ -82,7 +82,6 @@ ul {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-size: contain;
 }
 
 .hero h1 {
@@ -431,11 +430,10 @@ button:hover {
         margin-bottom: 20px;
     }
     
-  .program {
-    width: calc(25% - 10px); /* Adjust width to fit 4 items per row with some gap */
-    box-sizing: border-box;
-}
-
+    .program {
+        text-align: center;
+        width: 18%;
+    }
     
     .program img {
         width: 100%;
@@ -528,9 +526,8 @@ body {
 .row {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: nowrap; /* Prevent wrapping */
 }
-
 
 .program img {
     width: 100%; /* Ensure images scale properly */
@@ -549,16 +546,4 @@ body {
     .team-row {
         flex-wrap: nowrap; /* Prevent wrapping */
     }
-}
-
-@media (max-width: 768px) {
-    .program {
-        width: calc(50% - 10px); /* Adjust to 2 items per row for smaller screens */
-    }
-}
-
-
-body, html {
-    width: 100%;
-    overflow-x: hidden; /* Avoid horizontal scrolling */
 }
