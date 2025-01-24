@@ -547,3 +547,63 @@ body {
         flex-wrap: nowrap; /* Prevent wrapping */
     }
 }
+
+
+@media only screen and (max-width: 414px) {
+    /* General Adjustments for Small Screens */
+    body {
+        font-size: 14px; /* Adjust font size for readability */
+    }
+
+    .navbar {
+        padding: 10px; /* Reduce padding */
+        font-size: 14px;
+    }
+
+    /* Adjust Team Section */
+    .team-row {
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        gap: 10px; /* Smaller gap between team members */
+    }
+
+    .team-member {
+        width: 45%; /* Reduce width for smaller screens */
+    }
+
+    /* Adjust Programs Section */
+    .programlarimiz-container .row {
+        flex-wrap: wrap; /* Allow images to wrap into rows */
+        justify-content: center; /* Center content */
+        gap: 10px;
+    }
+
+    .program {
+        width: 45%; /* Make programs smaller */
+    }
+
+    .program img {
+        width: 100%;
+    }
+
+    /* Adjust References Section */
+    .carousel img {
+        max-height: 80px; /* Reduce logo size */
+    }
+
+    /* Embedded Videos */
+    .embedded-videos {
+        flex-direction: column; /* Stack videos vertically */
+    }
+
+    .embedded-videos iframe {
+        width: 90%; /* Make videos fit within the screen */
+        height: 200px; /* Adjust height */
+    }
+
+    /* Contact Section */
+    .contact-container {
+        flex-direction: column; /* Stack items vertically */
+        gap: 15px; /* Add spacing between items */
+    }
+}
+
