@@ -549,11 +549,3 @@ body {
 }
 
 
-@media (max-width: 768px) {
-    body {
-        transform: scale(0.5); /* Adjust the zoom level */
-        transform-origin: top left; /* Set the origin for the scaling */
-    }
-}
-
-
