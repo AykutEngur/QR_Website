@@ -547,3 +547,24 @@ body {
         flex-wrap: nowrap; /* Prevent wrapping */
     }
 }
+
+
+/* Ensure the body is centered and scales nicely */
+body {
+  transform: scale(0.9); /* Adjust the scaling to match the "zoomed-out" look */
+  transform-origin: top center; /* Maintain alignment during scaling */
+  margin: 0; /* Remove unwanted margins */
+  overflow-x: hidden; /* Prevent horizontal scrolling caused by scaling */
+}
+
+/* For better responsiveness, make sure these are in place */
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* Optional: Adjust font sizes or paddings to fit the zoomed-out look */
+h1, h2, h3, p {
+  font-size: 90%; /* Scale down fonts if necessary */
+}
+
