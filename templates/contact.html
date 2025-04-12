@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bize Ulaşın</title>
+</head>
+<body>
+    <h1>Bize Ulaşın</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Contact Form -->
+    <form method="POST" action="{{ url_for('contact') }}">
+        <div class="name-fields">
+            <input type="text" name="name" placeholder="Adiniz" required>
+            <input type="text" name="surname" placeholder="Soyadiniz" required>
+        </div>
+        <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+        <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
+        <button type="submit">Gönder</button>
+    </form>
+</body>
+</html>

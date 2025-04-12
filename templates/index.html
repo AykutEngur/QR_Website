@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=0.4, maximum-scale=1, user-scalable=no">
+
+
+
+
+    <title>Sports QR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='assets/sports_qr_logo.png') }}" alt="Sports QR LOGO">
+
+            </a>
+        </div>
+        <nav>
+            <ul>
+                
+                <li><a href="#hero">Ana Sayfa</a></li>
+                <li><a href="#team">Ekibimiz</a></li>
+                <li><a href="#references">Referanslarımız</a></li>
+                <li><a href="#programs">Programlarımız</a></li>
+                <li><a href="#contact">Bize Ulaşın</a></li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <a href="https://www.tiktok.com/@sportsqr" target="_blank">
+                <img src="{{ url_for('static', filename='assets/tiktok_icon.png') }}" alt="Sports QR LOGO">
+
+            </a>
+            <a href="https://www.instagram.com/sports.qr/" target="_blank">
+                <img src="{{ url_for('static', filename='assets/instagram_icon.png') }}" alt="Sports QR LOGO">
+
+            </a>
+            <a href="https://www.youtube.com/@sportsqr" target="_blank">
+                <img src="{{ url_for('static', filename='assets/youtube_icon.png') }}" alt="Sports QR LOGO">
+
+            </a>
+        </div>
+    </header>
+    
+
+    
+    
+    <!-- Hero Section -->
+
+
+
+<!-- Embedded videos -->
+<section id="hero">
+    
+    <div class="embedded-videos-section">
+        <h2 class="section-title">En Yeni İçeriklerimiz</h2>
+        <div class="embedded-videos" id="videos-container">
+           <div class="embedded-videos">
+        <!-- YouTube Shorts -->
+         <iframe src="https://www.tiktok.com/embed/7492097711739604232" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7492051787227172103" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7491732023229435143" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7491701856222104840" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+       
+      </div>
+        </div>
+    </div>
+
+    
+    
+    
+
+  
+    <div class="embedded-videos-section">
+      <h2 class="section-title">En Popüler İçeriklerimiz</h2>
+      <div class="embedded-videos">
+        <!-- YouTube Shorts -->
+        <iframe src="https://www.tiktok.com/embed/7440138887768329479" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7440183551573773586" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7445662564639362322" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.tiktok.com/embed/7436070604152818965" width="300" height="500" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+  
+
+    
+
+ <!-- Ekibimiz -->
+<section class="team" id="team">
+    <h2 class="section-title">Ekibimiz</h2>
+    <div class="team-container">
+        <!-- First Row -->
+        <div class="team-row">
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/abdik.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Gökhan</span> <span class="surname">Abdik</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/mujdat.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Müjdat M.</span> <span class="surname">Muratoğlu</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/ozkan.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Özkan</span> <span class="surname">Öztürk</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/ibrahim.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">İbrahim</span> <span class="surname">Altınsay</span></p>
+            </div>
+        </div>
+        <!-- Second Row -->
+        <div class="team-row">
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/cagri.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Çağrı</span> <span class="surname">Davran</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/erman.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Erman</span> <span class="surname">Gönülşen</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/miray.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Miray</span> <span class="surname">Çavuşoğlu</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/cem.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Cem</span> <span class="surname">Odabaşı</span></p>
+            </div>
+        </div>
+        <!-- Third Row -->
+        <div class="team-row">
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/erim.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Erim</span> <span class="surname">Dereli</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/merve.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Merve</span> <span class="surname">Al</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/gizem.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Gizem</span> <span class="surname">Toksarı</span></p>
+            </div>
+             <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/asil.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Asilhan</span> <span class="surname">Aksoy</span></p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='assets/ezgi.JPG') }}" alt="Sports QR LOGO">
+                <p><span class="name">Ezgi</span> <span class="surname">Sütcü</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Referanslarımız -->
+    <section class="references" id="references">
+        <h2 class="section-title">Referanslarımız</h2>
+        <div class="carousel">
+            <div class="carousel-track">
+                <!-- All logos in one continuous row -->
+                <img src="{{ url_for('static', filename='assets/prometeon_logo.png') }}" alt="Prometeon Logo">
+                <img src="{{ url_for('static', filename='assets/petrol_ofisi_logo.png') }}" alt="Petrol Ofisi Logo">
+                <img src="{{ url_for('static', filename='assets/corsair_logo.png') }}" alt="Corsair Logo">
+                <img src="{{ url_for('static', filename='assets/hp_logo.png') }}" alt="HP Logo">
+                <img src="{{ url_for('static', filename='assets/muvika_logo.png') }}" alt="Muvika Logo">
+                <img src="{{ url_for('static', filename='assets/fropie_logo.png') }}" alt="Fropie Logo">
+                <img src="{{ url_for('static', filename='assets/go_plus_logo.png') }}" alt="Go Plus Logo">
+                <img src="{{ url_for('static', filename='assets/phillips_logo.png') }}" alt="Phillips Logo">
+                <img src="{{ url_for('static', filename='assets/burger_king_logo.png') }}" alt="Burger King Logo">
+                <img src="{{ url_for('static', filename='assets/eti_logo.png') }}" alt="Eti Logo">
+                <img src="{{ url_for('static', filename='assets/misli_logo.png') }}" alt="Misli Logo">
+                <img src="{{ url_for('static', filename='assets/hue_logo.png') }}" alt="Hue Logo">
+                <img src="{{ url_for('static', filename='assets/amd_logo.png') }}" alt="AMD Logo">
+                <img src="{{ url_for('static', filename='assets/muili_aku_logo.png') }}" alt="Muili Aku Logo">
+                <img src="{{ url_for('static', filename='assets/tab_gida_sponsor.png') }}" alt="Tab Gıda Sponsor Logo">
+                <img src="{{ url_for('static', filename='assets/borusan_logo.png') }}" alt="Borusan Logo">
+                
+                <!-- Duplicate set of logos for infinite looping -->
+                <img src="{{ url_for('static', filename='assets/prometeon_logo.png') }}" alt="Prometeon Logo">
+                <img src="{{ url_for('static', filename='assets/petrol_ofisi_logo.png') }}" alt="Petrol Ofisi Logo">
+                <img src="{{ url_for('static', filename='assets/corsair_logo.png') }}" alt="Corsair Logo">
+                <img src="{{ url_for('static', filename='assets/hp_logo.png') }}" alt="HP Logo">
+                <img src="{{ url_for('static', filename='assets/muvika_logo.png') }}" alt="Muvika Logo">
+                <img src="{{ url_for('static', filename='assets/fropie_logo.png') }}" alt="Fropie Logo">
+                <img src="{{ url_for('static', filename='assets/go_plus_logo.png') }}" alt="Go Plus Logo">
+                <img src="{{ url_for('static', filename='assets/phillips_logo.png') }}" alt="Phillips Logo">
+                <img src="{{ url_for('static', filename='assets/burger_king_logo.png') }}" alt="Burger King Logo">
+                <img src="{{ url_for('static', filename='assets/eti_logo.png') }}" alt="Eti Logo">
+                <img src="{{ url_for('static', filename='assets/misli_logo.png') }}" alt="Misli Logo">
+                <img src="{{ url_for('static', filename='assets/hue_logo.png') }}" alt="Hue Logo">
+                <img src="{{ url_for('static', filename='assets/amd_logo.png') }}" alt="AMD Logo">
+                <img src="{{ url_for('static', filename='assets/muili_aku_logo.png') }}" alt="Muili Aku Logo">
+                <img src="{{ url_for('static', filename='assets/tab_gida_sponsor.png') }}" alt="Tab Gıda Sponsor Logo">
+                <img src="{{ url_for('static', filename='assets/borusan_logo.png') }}" alt="Borusan Logo">
+
+
+
+                <img src="{{ url_for('static', filename='assets/prometeon_logo.png') }}" alt="Prometeon Logo">
+                <img src="{{ url_for('static', filename='assets/petrol_ofisi_logo.png') }}" alt="Petrol Ofisi Logo">
+                <img src="{{ url_for('static', filename='assets/corsair_logo.png') }}" alt="Corsair Logo">
+                <img src="{{ url_for('static', filename='assets/hp_logo.png') }}" alt="HP Logo">
+                <img src="{{ url_for('static', filename='assets/muvika_logo.png') }}" alt="Muvika Logo">
+                <img src="{{ url_for('static', filename='assets/fropie_logo.png') }}" alt="Fropie Logo">
+                <img src="{{ url_for('static', filename='assets/go_plus_logo.png') }}" alt="Go Plus Logo">
+                <img src="{{ url_for('static', filename='assets/phillips_logo.png') }}" alt="Phillips Logo">
+                <img src="{{ url_for('static', filename='assets/burger_king_logo.png') }}" alt="Burger King Logo">
+                <img src="{{ url_for('static', filename='assets/eti_logo.png') }}" alt="Eti Logo">
+                <img src="{{ url_for('static', filename='assets/misli_logo.png') }}" alt="Misli Logo">
+                <img src="{{ url_for('static', filename='assets/hue_logo.png') }}" alt="Hue Logo">
+                <img src="{{ url_for('static', filename='assets/amd_logo.png') }}" alt="AMD Logo">
+                <img src="{{ url_for('static', filename='assets/muili_aku_logo.png') }}" alt="Muili Aku Logo">
+                <img src="{{ url_for('static', filename='assets/tab_gida_sponsor.png') }}" alt="Tab Gıda Sponsor Logo">
+                <img src="{{ url_for('static', filename='assets/borusan_logo.png') }}" alt="Borusan Logo">
+                
+
+
+
+
+            </div>
+        </div>
+    </section>
+    
+    
+
+<!-- Programlarımız -->
+<section class="programs" id="programs">
+    <h2 class="section-title">Programlarımız</h2>
+    <div class="programlarimiz-container">
+        <div class="row">
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=1Jr7Pq3QC2I&list=PL2XxADymP5oWHXbV01SgW5MjoPdbsMoXL" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/qr_show.png') }}" alt="Program 1">
+                    <p>QR SHOW</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=VdCAi1BCy9U&list=PL2XxADymP5oWgAVl55JAVO2F2KiUy_Q6H" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/pl_qr.png') }}" alt="Program 1">
+                    <p>PL QR</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=ne8wL0oTHio&list=PL2XxADymP5oXEVyQcSrgxy3S6H7wkT9RZ" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/pl_lab.png') }}" alt="Program 1">
+                    <p>PL LAB</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=ibmBRZpZglg" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/hola_laliga.png') }}" alt="Program 1">
+                    <p>Hola Laliga</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=U5EEEOpfyI8&list=PL2XxADymP5oX2J-6oeDFKMqSHJvnD7J8S" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/pl_fantasy_show.png') }}" alt="Program 1">
+                    <p>PL Fantasy Show</p>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=8Fm13cfdwzc&list=PL2XxADymP5oWUMZFFGrtae_1cwqGk01lX" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/turk_futbolunun_efsaneleri.png') }}" alt="Program 1">
+                    <p>Turk Futbolunun Efsaneleri</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=SmPiCQu8a78" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/final_londra.png') }}" alt="Program 1">
+                    <p>Final Londra</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=AY7rbgBOfRk&list=PL2XxADymP5oWup2cJQLKIRtIB3lQcTvY4" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/napoli_ruyasi.png') }}" alt="Program 1">
+                    <p>Napoli Ruyasi</p>
+                </a>
+            </div>
+            <div class="program">
+                <a href="https://www.youtube.com/watch?v=H81835fUq0s" target="_blank">
+                    <img src="{{ url_for('static', filename='assets/qr_rop.png') }}" alt="Program 1">
+                    <p>QR Rop</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Bize Ulaşın -->
+    <section id="contact">
+        <div class="contact-container">
+            <!-- Left Column -->
+            <div class="contact-form-container">
+                <form class="contact-form" method="POST" action="{{ url_for('contact') }}">
+                    <div class="form-header">
+                        <h3>Bize Ulaşın</h3>
+                    </div>
+                    <div class="name-fields">
+                        <input type="text" name="name" placeholder="Adiniz" required>
+                        <input type="text" name="surname" placeholder="Soyadiniz" required>
+                    </div>
+                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+                    <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
+                    <button type="submit">Gönder</button>
+                </form>
+                
+            </div>
+            <!-- Right Column -->
+            <div class="contact-info">
+                <p><strong><span class="highlight">E-Posta:</span></strong> info@sportsqr.com.tr</p>
+          
+           
+                
+
+            </div>
+        </div>
+    </section>
+    
+    
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Sports QR | Tüm Hakları Saklıdır.
+    </footer>
+    
+    
+</body>
+</html> 
+
