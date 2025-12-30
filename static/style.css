@@ -1,550 +1,1136 @@
-/* Genel Stiller */
+/* --- GENEL AYARLAR --- */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    /* Yeni Renk Paleti */
+    --primary-dark: #1a0b2e;
+    --primary-purple: #4300a3;
+    --primary-pink: #ff007f;
+    --gradient-main: linear-gradient(135deg, #2a0845 0%, #6441A5 40%, #ff007f 100%);
+    --gradient-text: linear-gradient(90deg, #4300a3 0%, #ff007f 100%);
+    --white: #ffffff;
+    --light-gray: #f4f4f4;
+    --text-color: #333;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--white);
+    color: var(--text-color);
+    overflow-x: hidden;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s ease;
 }
 
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}       
+}
 
-/* Navbar */
+/* --- NAVBAR --- */
 .navbar {
     position: sticky;
     top: 0;
     display: flex;
-    justify-content: center; /* Center the navbar content horizontally */
-    align-items: center; /* Align the items vertically */
-    padding: 10px 20px;
-    background-color: #121dde;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background: var(--gradient-main); /* Mavi yerine Gradient */
     color: white;
     z-index: 1000;
-    width: 100%;
-    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.navbar nav {
-    width: 100%; /* Ensure nav takes the full width */
-    display: flex;
-    justify-content: center; /* Center the menu items */
+.navbar .logo img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .navbar nav ul {
     display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar nav ul li {
-    margin: 0 25px; /* Adjust space between items */
+    gap: 30px;
 }
 
 .navbar nav ul li a {
-    display: block;
-    padding: 15px 0; /* Increase padding for better clickability */
-    font-size: 20px; /* Make font size bigger */
-    color: white; /* Ensure the text is white */
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .navbar nav ul li a:hover {
-    color: lightblue;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-
-
-.social-icons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-icons img {
-    width: 20px;
-    height: 20px;
-}
-
-/* Hero Section */
-
-.hero {
-    position: relative;
-    height: 100vh;
-    background: url('placeholder.jpg') no-repeat center center/cover;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    margin: 0;
-}
-
-/* Scrollable Thumbnails */
-.thumbnails {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.thumbnails img {
-    width: 150px;
-    height: 100px;
-    object-fit: cover;
-    border: 2px solid white;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.thumbnails img:hover {
-    transform: scale(1.1);
-}
-
-/* Sections */
-section {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.team, .references, .programs {
-    background-color: #f5f5f5;
-}
-
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 10px;
-}
-
-.carousel img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Contact Form */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: auto;
-}
-
-.contact-form input, .contact-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.contact-form button {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.contact-form button:hover {
-    background-color: #1EA9DD;
-}
-
-footer {
-    padding: 20px;
-    text-align: center;
-    background-color: #121dde;
-    color: white;
-}
-
-/* Social Media Icons */
 .social-media {
     display: flex;
     gap: 15px;
-    align-items: center;
 }
 
 .social-media img {
     width: 24px;
     height: 24px;
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    filter: invert(1); /* İkonları beyaza çevirir */
+    transition: transform 0.3s;
 }
 
 .social-media img:hover {
-    transform: scale(1.2);
-    opacity: 0.8;
+    transform: scale(1.2) rotate(5deg);
 }
 
-/* Contact Section */
-.contact-container {
+/* --- GENEL BÖLÜM STİLLERİ --- */
+section {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+    /* Gradient Yazı Efekti */
+    background: var(--gradient-text);
+    background-clip: text;          /* Standart özellik - Uyarıyı çözer */
+    -webkit-background-clip: text;  /* Safari/Chrome desteği */
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* --- VİDEOLAR (Hero) --- */
+#hero {
+    background-color: var(--white);
+}
+
+.embedded-videos-section {
+    margin-bottom: 50px;
+}
+
+.embedded-videos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    gap: 40px;
+    justify-content: center;
+    gap: 20px;
 }
 
-.contact-form-container, .contact-info {
-    flex: 1;
-    min-width: 300px;
+.embedded-videos iframe {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    background: #000;
 }
 
-.contact-form {
+.embedded-videos iframe:hover {
+    transform: translateY(-10px);
+}
+
+/* --- EKİBİMİZ --- */
+.team {
+    padding: 60px 20px;
+    background-color: var(--light-gray); /* Hafif gri arka plan */
+    text-align: center;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tam olarak 3 sütun */
+    gap: 40px; /* Kişiler arasındaki boşluk */
+    max-width: 1100px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.team-member {
     display: flex;
     flex-direction: column;
-}
-
-.form-header h3 {
-    margin-bottom: 15px;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #007BFF;
-}
-
-.name-fields {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.name-fields input {
-    flex: 1;
-}
-
-.contact-info {
-    font-size: 1.5rem;
-    line-height: 1.8;
-    text-align: left;
-    padding-left: 20px;
-    border-left: 2px solid #ccc;
-    color: #007BFF;
-}
-
-.contact-info .highlight {
-    font-weight: bold;
-}
-
-.contact-info p {
-    margin-bottom: 15px;
-}
-
-textarea {
-    margin-bottom: 15px;
-    font-size: 1rem;
-}
-
-input, textarea {
-    font-size: 1rem;
-}
-
-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Google Maps Section */
-#google-maps {
-    padding: 0;
-}
-
-.map-container {
-    margin: 20px auto;
-    max-width: 1000px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 2px solid #007BFF;
-}
-
-.map-container iframe {
+    align-items: center;
     width: 100%;
-    height: 450px;
-    border: none;
-    border-radius: 30px;
 }
 
-/* Logo Styling */
-.logo img {
-    max-height: 80px;
-    width: auto;
+.team-member img {
+    width: 160px; /* Fotoğraf boyutu */
+    height: 160px;
+    border-radius: 50%; /* Tam yuvarlak */
+    object-fit: cover;
+    /* Yeni tasarıma uygun gradient border */
+    padding: 4px;
+    background: var(--gradient-main); 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.team-member img:hover {
+    transform: scale(1.1); /* Üzerine gelince büyüme efekti */
+}
+
+.team-member p {
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+.team-member .name {
+    font-weight: 700;
+    color: var(--primary-purple);
     display: block;
 }
 
-.logo {
-    flex: 0 1 auto;  /* Ensure logo stays on the left */
-    margin-right: auto; /* Pushes logo to the left side */
+.team-member .surname {
+    font-weight: 300;
+    color: var(--text-color);
+    text-transform: uppercase;
 }
 
-
-/* Referanslarımız Section Styles */
-.references {
-    background-color: #121dde; /* Set the background color */
-    padding: 60px 20px; /* Ensure spacing remains consistent */
-}
-
-/* Referanslarımız Section Title */
-.references .section-title {
-    color: white; /* Make the title text white */
-    font-size: 2.5rem; /* Optional: Slightly increase the font size for emphasis */
-    margin-bottom: 30px; /* Adjust spacing below the title */
-}
-
-/* Carousel Styles */
-.references .carousel {
-    display: flex;
-    justify-content: center; /* Center the logos horizontally */
-    align-items: center; /* Align logos vertically */
-    gap: 20px; /* Space between the logos */
-}
-
-/* Logos Styling */
-.references .carousel img {
-    max-height: 150px; /* Restrict the height for consistency */
-    object-fit: contain; /* Maintain aspect ratio */
-}
-
-/* Prometeon-specific adjustments */
-.references .carousel img.prometeon-logo {
-    max-width: 250px; /* Restrict Prometeon logo width */
-}
-
-
-/* Ekibimiz Section */
-.team {
-        padding: 60px 20px;
-        background-color: #f5f5f5; /* Light background */
-        text-align: center;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 30px;
-        color: #121dde;
-    }
-
-    /* Team Container */
+/* Mobil için Ayar: Mobilde tek sütuna düşer */
+@media (max-width: 768px) {
     .team-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
+        grid-template-columns: 1fr; 
+        gap: 30px;
     }
+}
 
-    /* Team Rows */
-    .team-row {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
+/* --- REFERANSLAR (Kayan Bant) --- */
+.references {
+    background: var(--gradient-main);
+    padding: 60px 0;
+    overflow: hidden;
+}
 
-    /* Team Member */
-    .team-member {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+.references .section-title {
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white; 
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
 
-    /* Circular Frames for Images */
-    .team-member img {
-        width: 175px;
-        height: 175px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 2px solid #121dde;
-        transition: transform 0.3s ease;
-        
-    }
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0; /* Gölgelerin kesilmemesi için boşluk */
+}
 
-    .team-member img:hover {
-        transform: scale(1.5);
-    }
+.carousel-track {
+    display: flex;
+    gap: 40px; /* Kutular arası boşluk */
+    animation: slide-infinite 30s linear infinite;
+    width: max-content;
+    padding-left: 40px; /* İlk eleman için boşluk */
+}
 
-    /* Name Styling */
-    .team-member p {
-        margin-top: 10px;
-        font-size: 1rem;
-    }
+/* LOGO STİLİ DÜZELTMESİ BURADA */
+.carousel-track img {
+    height: 60px; /* Logo yüksekliği */
+    width: 140px; /* Standart genişlik alanı */
+    object-fit: contain; /* Logoyu sündürmeden sığdır */
+    
+    /* Eski filtreyi kaldırdık (filter: invert...) */
+    filter: none; 
+    opacity: 1;
 
-    .team-member .name {
-        color: #121dde; /* Blue color for the name */
-        font-weight: 400;
-    }
+    /* Yeni Kutu (Kart) Tasarımı */
+    background-color: rgba(255, 255, 255, 0.95); /* Hafif şeffaf beyaz arka plan */
+    padding: 15px 25px;
+    border-radius: 12px; /* Köşeleri yuvarlatma */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .team-member .surname {
-        font-weight: bold;
-        color: #121dde; /* Slightly darker for contrast */
-    }
+.carousel-track img:hover {
+    transform: translateY(-5px); /* Üzerine gelince hafif yukarı kalksın */
+    background-color: #ffffff; /* Tam beyaz olsun */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .team-row {
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-    }
+@keyframes slide-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
+/* --- PROGRAMLARIMIZ --- */
+.programs {
+    background-color: var(--white);
+}
 
-    .programlarimiz-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #329ba8; /* Added background color */
-        padding: 20px 0; /* Optional padding for spacing */
-    }
-    
-    
-    .row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
-    
-    .program {
-        text-align: center;
-        width: 18%;
-    }
-    
-    .program img {
-        width: 100%;
-        border-radius: 10px;
-        border: 2px solid white;
-    }
-    
-    .program p {
-        margin-top: 10px;
-        font-size: 20px;
-        color: #121dde;
-    }
-    
-    .embedded-videos-section {
-        margin: 40px 0;
-        text-align: left;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        color: #121dde;
-    }
-    
-    /* Embedded Videos Layout */
-    .embedded-videos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
-
-      
-      .program img:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    .references {
-        background-color: #121dde;
-        padding: 60px 20px;
-        overflow: hidden;
-    }
-    
-    .references .section-title {
-        color: white;
-        font-size: 2.5rem;
-        margin-bottom: 30px;
-    }
-    
-    .carousel {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-    }
-    
-    .carousel-track {
-        display: flex;
-        gap: 10px; /* Adjust spacing between logos */
-        animation: slide-infinite 90s linear infinite;
-        width: max-content; /* Prevent wrapping */
-    }
-    
-    .carousel-track img {
-        height: 100px;
-        object-fit: contain;
-        flex-shrink: 0;
-    }
-    
-    /* Continuous sliding animation */
-    @keyframes slide-infinite {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-
-/* Lock Layout for All Screen Sizes */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow-x: scroll; /* Allow horizontal scrolling */
-    scroll-behavior: smooth;
+.programlarimiz-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background: none; /* Eski mavi arka planı kaldırdık */
 }
 
 .row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap; /* Prevent wrapping */
+    display: flex; /* Eski yapıdan gelen row'u esnek yapıyoruz */
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.program {
+    width: 200px;
+    transition: transform 0.3s;
+    text-align: center;
 }
 
 .program img {
-    width: 100%; /* Ensure images scale properly */
-    max-width: none; /* Remove max-width restrictions */
+    width: 100%;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.hero {
-    height: 100vh; /* Keep full-height sections */
+.program p {
+    margin-top: 10px;
+    font-weight: 700;
+    color: var(--primary-purple);
+    text-transform: uppercase;
+    font-size: 1rem;
 }
 
-/* Override Media Queries */
+.program:hover {
+    transform: translateY(-5px);
+}
+
+/* --- İLETİŞİM --- */
+#contact {
+    background-color: #f9f9f9;
+    padding: 80px 10%;
+}
+
+.contact-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-form-container {
+    flex: 2;
+}
+
+.contact-info {
+    flex: 1;
+    border-left: 2px solid #eee;
+    padding-left: 40px;
+    text-align: left;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.form-header h3 {
+    color: var(--primary-purple);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 3px rgba(255, 0, 127, 0.1);
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: var(--gradient-main);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-form button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(255, 0, 127, 0.3);
+}
+
+/* --- FOOTER --- */
+footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* --- MOBİL UYUMLULUK --- */
 @media (max-width: 768px) {
-    body {
-        overflow-x: scroll; /* Ensure horizontal scroll */
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
     }
-    .team-row {
-        flex-wrap: nowrap; /* Prevent wrapping */
+    
+    .navbar nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .contact-info {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid #eee;
+        padding-top: 30px;
+        text-align: center;
+    }
+}
+
+
+/* --- MOBİL VİDEO DÜZENLEMESİ (Sadece Telefonlar İçin) --- */
+@media (max-width: 768px) {
+    /* Videoları kapsayan kutuyu Flex yerine Grid yapıyoruz */
+    .embedded-videos {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Ekranı tam ortadan ikiye böl (2 sütun) */
+        gap: 10px; /* Videolar arası boşluk (daha dar) */
+        padding: 0 10px; /* Kenarlardan hafif boşluk */
+    }
+
+    /* Videoların (iframe) boyutlarını mobile göre küçültüyoruz */
+    .embedded-videos iframe {
+        width: 100%; /* Bulunduğu kutuyu (yarım ekranı) tamamen kaplasın */
+        height: 310px; /* Orantıyı korumak için yüksekliği azalttık (Masaüstünde 500'dü) */
+        border-radius: 10px; /* Mobilde köşe yuvarlaklığını biraz azalttık */
+    }
+    
+    /* Bölüm başlığının boyutunu mobilde biraz küçültelim ki çok yer kaplamasın */
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+}
+
+
+/* --- PROGRAMLAR (Grid Sistemi) --- */
+.programlarimiz-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Masaüstünde 3 Sütun */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.program {
+    width: 100%; /* Bulunduğu kutuyu doldur */
+    max-width: 250px; /* Çok da büyümesin */
+}
+
+/* --- MOBİL GÖRÜNÜM DÜZELTMELERİ --- */
+@media (max-width: 768px) {
+    
+    /* 1. VİDEOLAR (Hero Section) - Tam Orantılı ve Net */
+    .embedded-videos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 Sütun */
+        gap: 15px; /* Videolar arası boşluk */
+        padding: 0 15px; /* Ekran kenarlarından boşluk */
+        justify-items: center; /* Ortala */
+    }
+
+    .embedded-videos iframe {
+        width: 100% !important; /* Kutuyu tam doldur */
+        height: auto !important; /* Yüksekliği serbest bırak */
+        aspect-ratio: 9 / 16; /* KİLİT NOKTA: TikTok Dikey Formatını Koru */
+        border: none; /* Çerçeve kirliliğini kaldır */
+        border-radius: 12px; /* Köşeleri yuvarlat */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Hafif gölge ile düzgün duruş */
+        display: block;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    /* 2. EKİBİMİZ (3 Sütun) */
+    .team-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    .team-member img {
+        width: 85px; 
+        height: 85px;
+        padding: 2px;
+    }
+
+    .team-member .name { font-size: 0.8rem; margin-top: 5px; }
+    .team-member .surname { font-size: 0.9rem; }
+
+    /* 3. PROGRAMLAR (3 Sütun) */
+    .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+        padding: 0 5px;
+    }
+
+    .program img { border-radius: 8px; }
+    .program p { font-size: 0.7rem; margin-top: 5px; line-height: 1.2; }
+}
+
+
+/* --- MOBİL GÖRÜNÜM (DÜZELTİLMİŞ VERSİYON) --- */
+@media (max-width: 768px) {
+    
+    /* 1. BAŞLIKLARI KÜÇÜLT (Sığması için) */
+    .section-title {
+        font-size: 1.4rem !important; /* Yazı boyutunu küçülttük */
+        margin-bottom: 20px;
+        line-height: 1.3; /* Satır aralığını düzelttik */
+        padding: 0 10px; /* Kenarlara yapışmasın */
+        word-wrap: break-word; /* Uzun kelimeler taşmasın */
+    }
+
+    /* 2. VİDEOLAR (Maksimum Genişlikte 2 Sütun) */
+    .embedded-videos {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 Sütun */
+        gap: 6px; /* Videolar arası boşluğu azalttık (daha çok yer kalsın) */
+        padding: 0 5px; /* Ekran kenar boşluklarını azalttık */
+        align-items: start;
+    }
+
+    .embedded-videos iframe {
+        width: 100% !important; 
+        height: auto !important;
+        aspect-ratio: 9 / 16; /* TikTok formatı */
+        border-radius: 8px;
+        display: block;
+        /* Zoom sorununu azaltmak için minimum yükseklik sınırı */
+        min-height: 280px; 
+    }
+
+    /* 3. EKİBİMİZ (3 Sütun - Sıkıştırılmış) */
+    .team-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px; /* Boşlukları minimuma indirdik */
+        padding: 0 2px;
+    }
+
+    .team-member img {
+        width: 75px; /* Fotoğrafları biraz daha küçülttük ki sığsın */
+        height: 75px;
+        padding: 2px;
+        border-width: 2px;
+    }
+
+    .team-member .name { font-size: 0.75rem; margin-top: 4px; }
+    .team-member .surname { font-size: 0.85rem; }
+
+    /* 4. PROGRAMLAR (3 Sütun) */
+    .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px;
+        padding: 0 5px;
+    }
+    
+    .program img { border-radius: 6px; }
+    .program p { font-size: 0.7rem; margin-top: 5px; }
+}
+
+
+/* --- REFERANSLAR (Kayan Bant) --- */
+.references {
+    background: var(--gradient-main);
+    padding: 40px 0; /* Yüksekliği biraz azalttık */
+    overflow: hidden;
+}
+
+.references .section-title {
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px; /* Kutular arası boşluğu azalttık (daha sıkı dursun) */
+    /* HIZ AYARI: 15s yaptık (Daha hızlı istiyorsan 10s yapabilirsin) */
+    animation: slide-infinite 15s linear infinite; 
+    width: max-content;
+    padding-left: 0; 
+}
+
+.carousel-track img {
+    height: 55px; /* Logoları bir tık küçülttük, daha seri aksın */
+    width: 130px;
+    object-fit: contain;
+    
+    /* Beyaz Kutu Stili */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* SONSUZ DÖNGÜ MANTIĞI */
+@keyframes slide-infinite {
+    0% { transform: translateX(0); }
+    /* Logoları iki kere kopyalayacağımız için tam yarıya kadar kaydırıyoruz */
+    100% { transform: translateX(-50%); } 
+}
+
+
+
+
+
+
+
+/* --- MOBİL GÖRÜNÜM: YATAY KAYDIRMA (Story Modu) --- */
+@media (max-width: 768px) {
+    
+    /* 1. VİDEOLAR İÇİN YATAY KAYDIRMA (Netflix Tarzı) */
+    .embedded-videos {
+        display: flex; /* Yan yana diz */
+        overflow-x: auto; /* Yatayda kaydırmaya izin ver */
+        scroll-snap-type: x mandatory; /* Kaydırınca videoyu ortala (Mıknatıs etkisi) */
+        gap: 15px; /* Videolar arası boşluk */
+        padding: 10px 20px 30px 20px; /* Alt boşluğu arttırdık ki gölgeler kesilmesin */
+        -webkit-overflow-scrolling: touch; /* iPhone'da akıcı kaydırma için */
+    }
+
+    /* Kaydırma çubuğunu gizle (Daha temiz görünüm) */
+    .embedded-videos::-webkit-scrollbar {
+        display: none;
+    }
+
+    .embedded-videos iframe {
+        /* Sabit genişlik veriyoruz ki görüntü bozulmasın */
+        min-width: 260px; /* Her video 260px genişliğinde olacak */
+        width: 75vw; /* Ekranın %75'ini kaplasın */
+        aspect-ratio: 9 / 16; /* TikTok formatını koru */
+        height: auto !important;
+        
+        scroll-snap-align: center; /* Durduğunda videoyu ekranın ortasına getir */
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Havalı bir gölge */
+        background: #000; /* Yüklenirken siyah gözüksün */
+        border: none;
+    }
+
+    /* Başlık Ayarı */
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-left: 20px; /* Başlığı içerikle hizala */
+        text-align: left; /* Mobilde sola yaslı başlık daha modern durur */
+    }
+
+    /* 2. EKİBİMİZ (3 Sütun - Korundu) */
+    .team-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px;
+        padding: 0 10px;
+    }
+    .team-member img { width: 75px; height: 75px; border-width: 2px; }
+    .team-member .name { font-size: 0.75rem; margin-top: 5px; }
+    .team-member .surname { font-size: 0.85rem; }
+
+    /* 3. PROGRAMLAR (3 Sütun - Korundu) */
+    .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+        padding: 0 10px;
+    }
+    .program p { font-size: 0.7rem; }
+}
+
+
+
+
+
+
+
+/* --- ANA VİTRİN (HERO VIDEO) --- */
+.hero-video-section {
+    position: relative;
+    width: 100%;
+    background-color: #000; /* Video yüklenene kadar siyah zemin */
+    overflow: hidden;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px; /* Çok geniş ekranlarda aşırı yayılmasın */
+    margin: 0 auto;
+    aspect-ratio: 16 / 9; /* Sinematik YouTube Formatı (Geniş Ekran) */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Videoya derinlik katan gölge */
+}
+
+/* Videonun üzerindeki yazı (İsteğe bağlı, şık durur) */
+.hero-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Yarı saydam siyah kutu */
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    pointer-events: none; /* Tıklamayı engellemesin */
+}
+
+.hero-overlay h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.hero-overlay p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* --- MOBİL GÖRÜNÜM GÜNCELLEMESİ --- */
+@media (max-width: 768px) {
+    
+    /* 1. ANA VİTRİN MOBİL AYARI */
+    .hero-overlay {
+        padding: 10px 15px;
+        bottom: 10px;
+        left: 10px;
+    }
+    .hero-overlay h1 { font-size: 1.2rem; }
+    .hero-overlay p { font-size: 0.8rem; }
+
+    /* 2. TİKTOK VİDEOLARI (Kaydırmalı + 2'li Görünüm) */
+    .embedded-videos {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px; /* Videolar birbirine daha yakın */
+        padding: 10px 15px 30px 15px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .embedded-videos::-webkit-scrollbar { display: none; }
+
+    .embedded-videos iframe {
+        /* HESAPLAMA: Ekranın %45'i kadar olsun (Böylece 2 tanesi %90 eder + boşluklar = Ekrana 2 tane sığar) */
+        min-width: 44vw; 
+        width: 44vw; 
+        aspect-ratio: 9 / 16;
+        height: auto !important;
+        
+        scroll-snap-align: start; /* Kaydırınca en başa hizala */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        background: #000;
+        border: none;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+        padding-left: 15px;
+        text-align: left;
+    }
+
+    /* 3. DİĞER MOBİL AYARLAR (Ekip ve Programlar - Korundu) */
+    .team-container, .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px; padding: 0 5px;
+    }
+    .team-member img { width: 75px; height: 75px; border-width: 2px; }
+    .team-member .name { font-size: 0.75rem; margin-top: 5px; }
+    .team-member .surname { font-size: 0.85rem; }
+    .program p { font-size: 0.7rem; }
+}
+
+
+/* --- ANA VİTRİN (HERO VIDEO) - TAM ORTALI --- */
+.hero-video-section {
+    display: flex;            /* Esnek kutu yapısı */
+    justify-content: center;  /* Yatayda tam ortala */
+    align-items: center;      /* Dikeyde tam ortala */
+    width: 100%;
+    background-color: #000;   /* Arka plan siyah */
+    padding: 20px 0;          /* Üstten alttan biraz boşluk */
+}
+
+.video-container {
+    width: 100%;
+    max-width: 1200px;        /* Bilgisayarda çok devasa olmasın */
+    aspect-ratio: 16 / 9;     /* YouTube standart oranı */
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Şık gölge */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;       /* Köşeleri hafif yumuşat */
+}
+
+/* Video üzerindeki yazı */
+.hero-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: white;
+    z-index: 2; /* Videonun üstünde kalsın */
+    pointer-events: none;
+}
+
+
+
+
+/* --- MOBİL GÖRÜNÜM (KESİN 2 SÜTUN) --- */
+@media (max-width: 768px) {
+    
+    /* 1. KISA VİDEOLAR (TİKTOK) - YAN YANA 2 TANE */
+    .embedded-videos {
+        display: grid !important; /* Kesinlikle Grid kullan */
+        grid-template-columns: 1fr 1fr !important; /* Eşit 2 sütun */
+        gap: 8px; /* Aradaki boşluk (çok açarsak sığmaz) */
+        padding: 0 8px; /* Kenar boşlukları */
+        overflow: visible; /* Kaydırmayı kapat, hepsini göster */
+    }
+
+    .embedded-videos iframe {
+        width: 100% !important; /* Kutuyu doldur */
+        height: auto !important; /* Yükseklik otomatik */
+        aspect-ratio: 9 / 16; /* TikTok oranı (uzunluk) */
+        min-width: 0; /* Sıkışmayı önle */
+        border-radius: 8px;
+        margin: 0;
+        display: block;
+    }
+
+    /* 2. ANA VİDEO (HERO) MOBİL AYARI */
+    .hero-video-section {
+        padding: 0; /* Mobilde boşluk olmasın, tam yapışsın */
+    }
+    .video-container {
+        border-radius: 0; /* Mobilde köşe yuvarlamaya gerek yok */
+    }
+    .hero-overlay {
+        bottom: 10px; left: 10px; padding: 5px 10px;
+    }
+    .hero-overlay h1 { font-size: 1rem; margin: 0; }
+    .hero-overlay p { display: none; } /* Mobilde alt yazıyı gizle yer kaplamasın */
+
+    /* 3. BAŞLIK AYARLARI */
+    .section-title {
+        font-size: 1.4rem;
+        text-align: center; /* Başlığı tekrar ortala */
+        margin: 20px 0 15px 0;
+    }
+
+    /* 4. EKİP VE PROGRAMLAR (3'lü Yan Yana Devam) */
+    .team-container, .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px; padding: 0 5px;
+    }
+    .team-member img { width: 70px; height: 70px; }
+    .team-member .name { font-size: 0.7rem; }
+    .team-member .surname { font-size: 0.8rem; }
+    .program p { font-size: 0.65rem; }
+}
+
+
+
+/* --- MOBİL GÖRÜNÜM (TEK SÜTUN - TAM GÖRÜNÜM) --- */
+@media (max-width: 768px) {
+    
+    /* 1. TİKTOK VİDEOLARI (TEK SÜTUN - NET GÖRÜNTÜ) */
+    .embedded-videos {
+        display: flex !important;
+        flex-direction: column !important; /* Alt alta diz */
+        gap: 30px; /* Videolar birbirine yapışmasın, ferah olsun */
+        padding: 0 20px; /* Kenarlardan boşluk bırak */
+    }
+
+    .embedded-videos iframe {
+        width: 100% !important; /* Kutuyu tamamen doldur */
+        height: auto !important;
+        aspect-ratio: 9 / 16 !important; /* TikTok formatını KORU */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Şık gölge */
+        display: block;
+    }
+
+    /* 2. ANA VİTRİN VİDEOSU (Hero) */
+    .hero-video-section {
+        padding: 0;
+    }
+    .video-container {
+        border-radius: 0;
+    }
+    .hero-overlay h1 { font-size: 1.1rem; }
+    .hero-overlay p { display: none; }
+
+    /* 3. BAŞLIKLAR */
+    .section-title {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 30px 0 20px 0;
+    }
+
+    /* 4. EKİP VE PROGRAMLAR (3'LÜ YAN YANA DEVAM) */
+    /* Bunları bozmadık, istediğin gibi sıkışık 3'lü duracak */
+    .team-container, .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px; 
+        padding: 0 5px;
+    }
+    .team-member img { width: 75px; height: 75px; border-width: 2px; }
+    .team-member .name { font-size: 0.75rem; margin-top: 5px; }
+    .team-member .surname { font-size: 0.85rem; }
+    .program p { font-size: 0.7rem; }
+}
+
+
+
+
+/* --- MOBİL GÖRÜNÜM (TEK SÜTUN - TAM GÖRÜNÜM) --- */
+@media (max-width: 768px) {
+    
+    /* 1. TİKTOK VİDEOLARI (TEK SÜTUN - NET GÖRÜNTÜ) */
+    .embedded-videos {
+        display: flex !important;
+        flex-direction: column !important; /* Alt alta diz */
+        gap: 30px; /* Videolar birbirine yapışmasın, ferah olsun */
+        padding: 0 20px; /* Kenarlardan boşluk bırak */
+    }
+
+    .embedded-videos iframe {
+        width: 100% !important; /* Kutuyu tamamen doldur */
+        height: auto !important;
+        aspect-ratio: 9 / 16 !important; /* TikTok formatını KORU */
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Şık gölge */
+        display: block;
+    }
+
+    /* 2. ANA VİTRİN VİDEOSU (Hero) */
+    .hero-video-section {
+        padding: 0;
+    }
+    .video-container {
+        border-radius: 0;
+    }
+    .hero-overlay h1 { font-size: 1.1rem; }
+    .hero-overlay p { display: none; }
+
+    /* 3. BAŞLIKLAR */
+    .section-title {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 30px 0 20px 0;
+    }
+
+    /* 4. EKİP VE PROGRAMLAR (3'LÜ YAN YANA DEVAM) */
+    /* Bunları bozmadık, istediğin gibi sıkışık 3'lü duracak */
+    .team-container, .programlarimiz-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px; 
+        padding: 0 5px;
+    }
+    .team-member img { width: 75px; height: 75px; border-width: 2px; }
+    .team-member .name { font-size: 0.75rem; margin-top: 5px; }
+    .team-member .surname { font-size: 0.85rem; }
+    .program p { font-size: 0.7rem; }
+}
+
+
+
+
+
+/* --- ORTA SLOGAN ALANI --- */
+.navbar-slogan {
+    display: flex;
+    flex-direction: column; /* Alt alta diz */
+    align-items: center;    /* Ortala */
+    justify-content: center;
+    color: white;
+    text-align: center;
+    flex-grow: 1; /* Boş alanı kapla ve tam ortaya geç */
+}
+
+.main-title {
+    font-weight: 800; /* Kalın yazı */
+    font-size: 1.5rem; /* Büyük puntolu marka ismi */
+    letter-spacing: 1px; /* Harf aralığı */
+    line-height: 1.1;
+}
+
+.sub-title {
+    font-size: 0.9rem; /* Slogan daha küçük */
+    font-weight: 300; /* İnce yazı */
+    opacity: 0.9; /* Hafif saydamlık */
+}
+
+/* --- MOBİL AYAR (Telefonda yazılar sığsın diye) --- */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 10px; /* Kenar boşluklarını azalt */
+    }
+
+    .logo img {
+        height: 40px; /* Logoyu mobilde biraz küçült */
+    }
+
+    .navbar-slogan {
+        margin: 0 5px; /* Logolara çok yapışmasın */
+    }
+
+    .main-title {
+        font-size: 1rem; /* Mobilde marka ismini küçült */
+    }
+
+    .sub-title {
+        font-size: 0.6rem; /* Mobilde sloganı küçült */
+        white-space: nowrap; /* Alt satıra geçmesin */
+    }
+
+    .social-media img {
+        height: 20px; /* Sosyal ikonları mobilde küçült */
+        margin-left: 5px;
+    }
+}
+
+
+
+
+
+
+
+/* --- MOBİL İÇİN GELİŞMİŞ NAVBAR TASARIMI (Premium Layout) --- */
+@media (max-width: 768px) {
+    
+    .navbar {
+        flex-wrap: wrap; /* İçeriklerin alt satıra geçmesine izin ver */
+        justify-content: space-between !important; /* Logo sol, İkonlar sağ */
+        padding: 12px 15px;
+        gap: 10px; /* Satırlar arası boşluk */
+    }
+
+    /* 1. LOGO (SOL ÜST) */
+    .logo {
+        order: 1; /* İlk sırada */
+        flex: 0 0 auto; /* Genişlik içeriği kadar olsun */
+    }
+    .logo img {
+        height: 45px; /* İdeal mobil boyutu */
+    }
+
+    /* 2. SOSYAL MEDYA (SAĞ ÜST) */
+    .social-media {
+        order: 2; /* İkinci sırada (Logonun karşısında) */
+        flex: 0 0 auto;
+        display: flex;
+        gap: 12px; /* İkonlar arası boşluk */
+        align-items: center;
+    }
+    .social-media img {
+        height: 24px; /* Mobilde parmakla basılabilecek boyut */
+        width: auto;
+        margin: 0;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* Hafif gölge */
+    }
+
+    /* 3. SLOGAN ve İSİM (ALT SATIR - TAM ORTA) */
+    .navbar-slogan {
+        order: 3; /* En alta geç */
+        width: 100%; /* Tüm satırı kapla */
+        text-align: center;
+        margin-top: 5px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15); /* Üst tarafa ince şık bir çizgi */
+    }
+
+    .main-title {
+        font-size: 1.3rem;
+        display: block; /* Alt alta olsunlar */
+        margin-bottom: 2px;
+        letter-spacing: 2px; /* Harfleri biraz açarak havalı göster */
+    }
+
+    .sub-title {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.85); /* Hafif grileştir */
+        letter-spacing: 0.5px;
     }
 }
