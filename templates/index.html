@@ -4,217 +4,1062 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports QR</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --pink: #ff007f;
+            --pink-light: #ff4da6;
+            --purple: #6c2bd9;
+            --purple-dark: #4a1a9e;
+            --purple-mid: #8b3ff5;
+            --purple-light: #b47ffa;
+            --purple-bg: #1a0a3d;
+            --purple-bg2: #120730;
+            --purple-surface: rgba(108, 43, 217, 0.15);
+            --purple-border: rgba(140, 80, 255, 0.25);
+            --text: #f0f0f0;
+            --muted: #a89cc8;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--purple-bg2);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            height: 68px;
+            background: rgba(18, 7, 48, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--purple-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+
+        .nav-logo-text { display: flex; flex-direction: column; }
+
+        .logo-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .logo-name span { color: var(--pink); }
+
+        .logo-slogan {
+            font-size: 9px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-socials { display: flex; align-items: center; gap: 8px; }
+
+        .nav-social-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--purple-border);
+            background: var(--purple-surface);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .nav-social-btn:hover {
+            border-color: var(--pink);
+            color: #fff;
+            background: rgba(255, 0, 127, 0.1);
+        }
+
+        .nav-social-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #1a0a3d 0%, #2d1060 50%, #1a0a3d 100%);
+            padding: 72px 40px 64px;
+            display: flex;
+            align-items: center;
+            gap: 56px;
+            border-bottom: 1px solid var(--purple-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(108,43,217,0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: 200px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255,0,127,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-left { flex: 1; position: relative; z-index: 1; }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.15);
+            color: var(--pink);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 127, 0.4);
+            margin-bottom: 22px;
+        }
+
+        .hero-title {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #fff;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span { color: var(--pink); }
+
+        .hero-sub {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 36px;
+            max-width: 420px;
+        }
+
+        .hero-stats { display: flex; gap: 36px; }
+
+        .stat-block { display: flex; flex-direction: column; }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-num span { color: var(--pink); }
+
+        .stat-label { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+        .hero-right { flex: 0 0 560px; position: relative; z-index: 1; }
+
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #0a0520;
+            border-radius: 12px;
+            border: 1px solid var(--purple-border);
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(108, 43, 217, 0.3);
+        }
+
+        .video-frame iframe { width: 100%; height: 100%; border: none; }
+
+        /* ── SECTIONS ── */
+        .section {
+            padding: 60px 40px;
+            border-bottom: 1px solid var(--purple-border);
+        }
+
+        .section-alt { background: rgba(108, 43, 217, 0.04); }
+
+        .section-header { margin-bottom: 36px; }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--purple-border), transparent);
+        }
+
+        .section-pill {
+            display: inline-block;
+            width: 4px;
+            height: 22px;
+            background: linear-gradient(to bottom, var(--pink), var(--purple));
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* ── CONTENT CARDS ── */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .content-card {
+            background: rgba(26, 10, 61, 0.8);
+            border-radius: 12px;
+            border: 1px solid var(--purple-border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .content-card:hover {
+            border-color: var(--purple-mid);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 43, 217, 0.3);
+        }
+
+        .card-thumb {
+            width: 100%;
+            aspect-ratio: 9/16;
+            position: relative;
+            overflow: hidden;
+            background: #0a0520;
+        }
+
+        .card-thumb iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .card-platform {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: var(--pink);
+            background: rgba(255, 0, 127, 0.15);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 0, 127, 0.4);
+            z-index: 2;
+        }
+
+        /* ── PROGRAMS ── */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .program-card {
+            background: rgba(26, 10, 61, 0.8);
+            border-radius: 12px;
+            border: 1px solid var(--purple-border);
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+
+        .program-card:hover {
+            border-color: var(--purple-mid);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 43, 217, 0.35);
+        }
+
+        .program-banner {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--purple-dark), #0a0520);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .program-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .program-banner-fallback {
+            font-size: 15px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 0 16px;
+        }
+
+        .program-info {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .prog-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .prog-tag {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .prog-arrow {
+            color: var(--purple-light);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ── TEAM ── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .team-card {
+            background: rgba(26, 10, 61, 0.8);
+            border-radius: 12px;
+            border: 1px solid var(--purple-border);
+            padding: 18px 8px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .team-card:hover {
+            border-color: var(--purple-mid);
+            transform: translateY(-3px);
+        }
+
+        .team-card:hover .team-avatar { border-color: var(--pink); }
+
+        .team-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 2px solid var(--purple-border);
+            margin: 0 auto 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--purple-light);
+            background: rgba(108, 43, 217, 0.2);
+            transition: border-color 0.2s;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .team-name {
+            font-size: 10px;
+            color: #ccc;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .team-role {
+            font-size: 9px;
+            color: var(--pink);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* ── REFERENCES CAROUSEL ── */
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-wrapper::before,
+        .carousel-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .carousel-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--purple-bg2), transparent);
+        }
+
+        .carousel-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--purple-bg2), transparent);
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            animation: scroll-left 28s linear infinite;
+            width: max-content;
+        }
+
+        .carousel-track:hover { animation-play-state: paused; }
+
+        @keyframes scroll-left {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ref-card {
+            flex-shrink: 0;
+            width: 180px;
+            height: 90px;
+            background: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .ref-card:hover {
+            border-color: var(--purple-mid);
+            transform: translateY(-2px);
+        }
+
+        .ref-card img {
+            max-width: 100%;
+            max-height: 50px;
+            object-fit: contain;
+            transition: opacity 0.2s;
+        }
+
+        .ref-card-fallback {
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+        }
+
+        .ref-card-fallback {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── CONTACT ── */
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .form-field {
+            width: 100%;
+            background: rgba(26, 10, 61, 0.8);
+            border: 1px solid var(--purple-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .form-field:focus { border-color: var(--purple-mid); }
+        .form-field::placeholder { color: var(--muted); }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        textarea.form-field { resize: vertical; min-height: 120px; }
+
+        .btn-send {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--purple), var(--pink));
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity 0.2s, transform 0.1s;
+            font-family: inherit;
+        }
+
+        .btn-send:hover { opacity: 0.9; }
+        .btn-send:active { transform: scale(0.98); }
+
+        .contact-info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            padding: 32px;
+            background: rgba(26, 10, 61, 0.6);
+            border-radius: 16px;
+            border: 1px solid var(--purple-border);
+        }
+
+        .ci-label {
+            font-size: 10px;
+            color: var(--purple-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .ci-value { font-size: 15px; color: #fff; }
+        .ci-value a { color: var(--pink); text-decoration: none; }
+        .ci-value a:hover { color: var(--pink-light); }
+
+        .ci-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+        .ci-socials { display: flex; gap: 10px; flex-wrap: wrap; }
+
+        .ci-social-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--purple-border);
+            background: var(--purple-surface);
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .ci-social-btn:hover {
+            border-color: var(--pink);
+            color: #fff;
+        }
+
+        .ci-social-btn svg { width: 14px; height: 14px; }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--purple-border);
+            background: rgba(18, 7, 48, 0.8);
+        }
+
+        .footer-copy { font-size: 12px; color: var(--muted); }
+
+        .footer-brand {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--muted);
+            letter-spacing: 2px;
+        }
+
+        .footer-brand span { color: var(--pink); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+            .programs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .hero { flex-direction: column; padding: 40px 20px; gap: 32px; }
+            .hero-right { flex: none; width: 100%; }
+            .hero-title { font-size: 38px; }
+            .section { padding: 40px 20px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .contact-row { grid-template-columns: 1fr; gap: 28px; }
+            .content-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+            .nav-social-btn span { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats { flex-wrap: wrap; gap: 20px; }
+            .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .content-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">
-            <a href="/">
-                <img src="{{ url_for('static', filename='assets/qrlogo.png') }}" alt="Sports QR LOGO">
-            </a>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="/" class="nav-logo">
+        <div class="nav-logo-img">
+            <img src="{{ url_for('static', filename='assets/qrlogo.png') }}" alt="SportsQR" onerror="this.parentElement.innerHTML='QR'">
         </div>
-    
-        <div class="navbar-slogan">
-            <span class="main-title">SPORTS QR</span>
-            <span class="sub-title">Sporu; farklı ve kaliteli izle!</span>
+        <div class="nav-logo-text">
+            <div class="logo-name">SPORTS<span>QR</span></div>
+            <div class="logo-slogan">Sporu farklı ve kaliteli izle</div>
         </div>
-    
-        <div class="social-media">
-            <a href="https://www.tiktok.com/@sportsqr" target="_blank">
-                <img src="{{ url_for('static', filename='assets/tiktok_icon.png') }}" alt="TikTok">
-            </a>
-            <a href="https://www.instagram.com/sports.qr/" target="_blank">
-                <img src="{{ url_for('static', filename='assets/instagram_icon.png') }}" alt="Instagram">
-            </a>
-            <a href="https://www.youtube.com/@sportsqr" target="_blank">
-                <img src="{{ url_for('static', filename='assets/youtube_icon.png') }}" alt="YouTube">
-            </a>
+    </a>
+    <div class="nav-socials">
+        <a href="https://www.tiktok.com/@sportsqr" target="_blank" class="nav-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.18 8.18 0 004.79 1.54V6.82a4.85 4.85 0 01-1.02-.13z"/></svg>
+            <span>TikTok</span>
+        </a>
+        <a href="https://www.instagram.com/sports.qr/" target="_blank" class="nav-social-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <span>Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/@sportsqr" target="_blank" class="nav-social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.01 3.01 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3.01 3.01 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3.01 3.01 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3.01 3.01 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            <span>YouTube</span>
+        </a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-tag">Dijital Spor Medyası</div>
+        <h1 class="hero-title">Sporu <span>farklı</span><br>ve kaliteli izle</h1>
+        <p class="hero-sub">Futbol, analiz, röportaj ve daha fazlası — TikTok, YouTube ve Instagram'da orijinal spor içerikleri.</p>
+        <div class="hero-stats">
+            <div class="stat-block">
+                <span class="stat-num">9<span>+</span></span>
+                <span class="stat-label">Uzman Yorumcu</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-num">9<span>+</span></span>
+                <span class="stat-label">Program</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-num">3<span> Platform</span></span>
+                <span class="stat-label">TikTok · YouTube · Instagram</span>
+            </div>
         </div>
-    </header>
-    <section class="hero-video-section" id="hero">
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/pe7-pxbUcRE?autoplay=1&mute=1&rel=0&modestbranding=1" 
-                title="Sports QR Featured Video" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    </div>
+    <div class="hero-right">
+        <div class="video-frame">
+            <iframe
+                src="https://www.youtube.com/embed/pe7-pxbUcRE?autoplay=1&mute=1&rel=0&modestbranding=1"
+                title="Sports QR Featured Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
             </iframe>
         </div>
-       
-    </section>
-    <section id="hero">
-        <div class="embedded-videos-section">
-            <h2 class="section-title">En Yeni İçeriklerimiz</h2>
-            <div class="embedded-videos">
-                <iframe src="https://www.tiktok.com/embed/7630879314724064520" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.tiktok.com/embed/7630851067105840405" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.tiktok.com/embed/7630806542215974164" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.tiktok.com/embed/7630783199286676744" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
+    </div>
+</section>
 
-        <div class="embedded-videos-section">
-            <h2 class="section-title">En Popüler İçeriklerimiz</h2>
-            <div class="embedded-videos">
-                <iframe src="https://www.tiktok.com/embed/7440138887768329479" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.tiktok.com/embed/7574063304872594708" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.tiktok.com/embed/7445662564639362322" width="280" height="500" frameborder="0" allowfullscreen></iframe>
-                <iframe src="https://www.tiktok.com/embed/7440183551573773586" width="280" height="500" frameborder="0" allowfullscreen></iframe>
+<!-- EN YENİ İÇERİKLER -->
+<section class="section">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="section-pill"></span>
+            En yeni içeriklerimiz
+        </div>
+    </div>
+    <div class="content-grid">
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7625699061223443733" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
             </div>
         </div>
-    </section>
-  
-    <section class="team" id="team">
-        <h2 class="section-title">Ekibimiz</h2>
-        <div class="team-container">
-            
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/abdik.jpg') }}" alt="Gökhan Abdik">
-                <p><span class="name">Gökhan</span> <span class="surname">Abdik</span></p>
-            </div>
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/mujdat.jpg') }}" alt="Müjdat M. Muratoğlu">
-                <p><span class="name">Müjdat M.</span> <span class="surname">Muratoğlu</span></p>
-            </div>
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/ozkan.jpg') }}" alt="Özkan Öztürk">
-                <p><span class="name">Özkan</span> <span class="surname">Öztürk</span></p>
-            </div>
-    
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/ibrahim.jpg') }}" alt="İbrahim Altınsay">
-                <p><span class="name">İbrahim</span> <span class="surname">Altınsay</span></p>
-            </div>
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/cagri.jpg') }}" alt="Çağrı Davran">
-                <p><span class="name">Çağrı</span> <span class="surname">Davran</span></p>
-            </div>
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/erman.jpg') }}" alt="Erman Gönülşen">
-                <p><span class="name">Erman</span> <span class="surname">Gönülşen</span></p>
-            </div>
-    
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/miray.jpg') }}" alt="Miray Çavuşoğlu">
-                <p><span class="name">Miray</span> <span class="surname">Çavuşoğlu</span></p>
-            </div>
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/asil.jpg') }}" alt="Asilhan Aksoy">
-                <p><span class="name">Asilhan</span> <span class="surname">Aksoy</span></p>
-            </div>
-            <div class="team-member">
-                <img src="{{ url_for('static', filename='assets/ezgi.jpg') }}" alt="Ezgi Sütcü">
-                <p><span class="name">Ezgi</span> <span class="surname">Sütcü</span></p>
-            </div>
-    
-        </div>
-    </section>
-    <section class="references" id="references">
-        <h2 class="section-title">Referanslarımız</h2>
-        <div class="carousel">
-            <div class="carousel-track">
-                <img src="{{ url_for('static', filename='assets/Prometeon.jpg') }}" alt="Prometeon">
-                <img src="{{ url_for('static', filename='assets/nethousee.png') }}" alt="Nethouse">
-                <img src="{{ url_for('static', filename='assets/pizzabullslogo.png') }}" alt="Pizza Bulls">
-                <img src="{{ url_for('static', filename='assets/teknolom-logo.png') }}" alt="Teknolom">
-                <img src="{{ url_for('static', filename='assets/ds.png') }}" alt="DS">
-                <img src="{{ url_for('static', filename='assets/m2.png') }}" alt="M">
-                <img src="{{ url_for('static', filename='assets/Prometeon.jpg') }}" alt="Prometeon">
-                <img src="{{ url_for('static', filename='assets/nethousee.png') }}" alt="Nethouse">
-                <img src="{{ url_for('static', filename='assets/pizzabullslogo.png') }}" alt="Pizza Bulls">
-                <img src="{{ url_for('static', filename='assets/teknolom-logo.png') }}" alt="Teknolom">
-                <img src="{{ url_for('static', filename='assets/ds.png') }}" alt="DS">
-                <img src="{{ url_for('static', filename='assets/m2.png') }}" alt="M">
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7625679737007918344" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
             </div>
         </div>
-    </section>
-    <section class="programs" id="programs">
-        <h2 class="section-title">Programlarımız</h2>
-        <div class="programlarimiz-container">
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=e9I9jb9GhgI" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/qr_g.png') }}" alt="QR GUNDEM">
-                    <p>QR GÜNDEM</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=5AglZCBaDNQ" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/ob.png') }}" alt="O MU BU MU">
-                    <p>O MU, BU MU?</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=T1xc-1Mqz_8" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/sq.png') }}" alt="SUPER QR">
-                    <p>SÜPER QR</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=ne8wL0oTHio&list=PL2XxADymP5oXEVyQcSrgxy3S6H7wkT9RZ" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/pl_lab.png') }}" alt="PL LAB">
-                    <p>PL LAB</p>
-                </a>
-            </div>
-           
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=VdCAi1BCy9U&list=PL2XxADymP5oWgAVl55JAVO2F2KiUy_Q6H"target="_blank">
-                    <img src="{{ url_for('static', filename='assets/pl_fantasy_show.png') }}" alt="SÜPER QR">
-                    <p>PL QR</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=8Fm13cfdwzc&list=PL2XxADymP5oWUMZFFGrtae_1cwqGk01lX" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/turk_futbolunun_efsaneleri.png') }}" alt="Efsaneler">
-                    <p>Türk Futbolunun Efsaneleri</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=SmPiCQu8a78" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/final_londra.png') }}" alt="Final Londra">
-                    <p>Final Londra</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=AY7rbgBOfRk&list=PL2XxADymP5oWup2cJQLKIRtIB3lQcTvY4" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/napoli_ruyasi.png') }}" alt="Napoli">
-                    <p>Napoli Rüyası</p>
-                </a>
-            </div>
-            <div class="program">
-                <a href="https://www.youtube.com/watch?v=H81835fUq0s" target="_blank">
-                    <img src="{{ url_for('static', filename='assets/qr_rop.png') }}" alt="QR ROP">
-                    <p>QR Röp</p>
-                </a>
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7625640868430630152" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
             </div>
         </div>
-    </section>
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7625607775367761160" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <section id="contact">
-        <h2 class="section-title">Bizimle İletişime Geçin</h2>
-        <div class="contact-container">
-            <div class="contact-form-container">
-                <form class="contact-form" method="POST" action="{{ url_for('contact') }}">
-                    <div class="name-fields" style="display: flex; gap: 15px;">
-                        <input type="text" name="name" placeholder="Adınız" required>
-                        <input type="text" name="surname" placeholder="Soyadınız" required>
-                    </div>
-                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
-                    <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
-                    <button type="submit">MESAJI GÖNDER</button>
-                </form>
-            </div>
-            <div class="contact-info">
-                <p>Reklam, sponsorluk ve diğer iş birlikleri için bize ulaşın.</p>
-                <p><strong><span class="highlight" style="color: #ff007f;">E-Posta:</span></strong> info@sportsqr.com.tr</p>
+<!-- EN POPÜLER İÇERİKLER -->
+<section class="section section-alt">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="section-pill"></span>
+            En popüler içeriklerimiz
+        </div>
+    </div>
+    <div class="content-grid">
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7440138887768329479" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
             </div>
         </div>
-    </section>
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7574063304872594708" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7445662564639362322" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-thumb">
+                <iframe src="https://www.tiktok.com/embed/7440183551573773586" allowfullscreen></iframe>
+                <span class="card-platform">TikTok</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <footer>
-        &copy; 2025 Sports QR | Tüm Hakları Saklıdır.
-    </footer>
+<!-- PROGRAMLAR -->
+<section class="section" id="programs">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="section-pill"></span>
+            Programlarımız
+        </div>
+    </div>
+    <div class="programs-grid">
+
+        <a href="https://www.youtube.com/watch?v=e9I9jb9GhgI" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/qr_g.png') }}" alt="QR Gündem" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">QR Gündem</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">QR Gündem</div><div class="prog-tag">Haftalık analiz</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=5AglZCBaDNQ" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/ob.png') }}" alt="O mu Bu mu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">O mu, Bu mu?</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">O mu, Bu mu?</div><div class="prog-tag">Karşılaştırma formatı</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=T1xc-1Mqz_8" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/sq.png') }}" alt="Süper QR" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">Süper QR</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">Süper QR</div><div class="prog-tag">Süper Lig içerikleri</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=ne8wL0oTHio&list=PL2XxADymP5oXEVyQcSrgxy3S6H7wkT9RZ" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/pl_lab.png') }}" alt="PL Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">PL Lab</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">PL Lab</div><div class="prog-tag">Premier League analiz</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=VdCAi1BCy9U&list=PL2XxADymP5oWgAVl55JAVO2F2KiUy_Q6H" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/pl_fantasy_show.png') }}" alt="PL QR" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">PL QR</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">PL QR</div><div class="prog-tag">Fantasy & haberler</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=8Fm13cfdwzc&list=PL2XxADymP5oWUMZFFGrtae_1cwqGk01lX" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/turk_futbolunun_efsaneleri.png') }}" alt="Türk Futbolunun Efsaneleri" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">Türk Futbolunun Efsaneleri</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">Türk Futbolunun Efsaneleri</div><div class="prog-tag">Belgesel seri</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=SmPiCQu8a78" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/final_londra.png') }}" alt="Final Londra" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">Final Londra</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">Final Londra</div><div class="prog-tag">Özel içerik</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=AY7rbgBOfRk&list=PL2XxADymP5oWup2cJQLKIRtIB3lQcTvY4" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/napoli_ruyasi.png') }}" alt="Napoli Rüyası" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">Napoli Rüyası</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">Napoli Rüyası</div><div class="prog-tag">Belgesel</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=H81835fUq0s" target="_blank" class="program-card">
+            <div class="program-banner">
+                <img src="{{ url_for('static', filename='assets/qr_rop.png') }}" alt="QR Röp" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="program-banner-fallback" style="display:none">QR Röp</div>
+            </div>
+            <div class="program-info">
+                <div><div class="prog-name">QR Röp</div><div class="prog-tag">Röportaj serisi</div></div>
+                <div class="prog-arrow">›</div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- EKİP -->
+<section class="section section-alt" id="team">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="section-pill"></span>
+            Ekibimiz
+        </div>
+    </div>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/abdik.jpg') }}" alt="Gökhan Abdik" onerror="this.parentElement.innerHTML='GA'">
+            </div>
+            <div class="team-name">Gökhan Abdik</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/mujdat.jpg') }}" alt="Müjdat M. Muratoğlu" onerror="this.parentElement.innerHTML='MM'">
+            </div>
+            <div class="team-name">Müjdat M. Muratoğlu</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/ozkan.jpg') }}" alt="Özkan Öztürk" onerror="this.parentElement.innerHTML='ÖÖ'">
+            </div>
+            <div class="team-name">Özkan Öztürk</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/ibrahim.jpg') }}" alt="İbrahim Altınsay" onerror="this.parentElement.innerHTML='İA'">
+            </div>
+            <div class="team-name">İbrahim Altınsay</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/cagri.jpg') }}" alt="Çağrı Davran" onerror="this.parentElement.innerHTML='ÇD'">
+            </div>
+            <div class="team-name">Çağrı Davran</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/erman.jpg') }}" alt="Erman Gönülşen" onerror="this.parentElement.innerHTML='EG'">
+            </div>
+            <div class="team-name">Erman Gönülşen</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/miray.jpg') }}" alt="Miray Çavuşoğlu" onerror="this.parentElement.innerHTML='MÇ'">
+            </div>
+            <div class="team-name">Miray Çavuşoğlu</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/asil.jpg') }}" alt="Asilhan Aksoy" onerror="this.parentElement.innerHTML='AA'">
+            </div>
+            <div class="team-name">Asilhan Aksoy</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">
+                <img src="{{ url_for('static', filename='assets/ezgi.jpg') }}" alt="Ezgi Sütcü" onerror="this.parentElement.innerHTML='ES'">
+            </div>
+            <div class="team-name">Ezgi Sütcü</div>
+            <div class="team-role">Yorumcu</div>
+        </div>
+    </div>
+</section>
+
+<!-- REFERANSLAR -->
+<section class="section" id="references">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="section-pill"></span>
+            Referanslarımız
+        </div>
+    </div>
+    <div class="carousel-wrapper">
+        <div class="carousel-track">
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/Prometeon.jpg') }}" alt="Prometeon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Prometeon</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/nethousee.png') }}" alt="Nethouse" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Nethouse</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/pizzabullslogo.png') }}" alt="Pizza Bulls" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Pizza Bulls</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/teknolom-logo.png') }}" alt="Teknolom" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Teknolom</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/ds.png') }}" alt="DS" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">DS</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/m2.png') }}" alt="M2" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">M2</div></div>
+            <!-- duplicate for seamless loop -->
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/Prometeon.jpg') }}" alt="Prometeon" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Prometeon</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/nethousee.png') }}" alt="Nethouse" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Nethouse</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/pizzabullslogo.png') }}" alt="Pizza Bulls" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Pizza Bulls</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/teknolom-logo.png') }}" alt="Teknolom" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">Teknolom</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/ds.png') }}" alt="DS" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">DS</div></div>
+            <div class="ref-card"><img src="{{ url_for('static', filename='assets/m2.png') }}" alt="M2" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="ref-card-fallback" style="display:none">M2</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- İLETİŞİM -->
+<section class="section section-alt" id="contact">
+    <div class="section-header">
+        <div class="section-title">
+            <span class="section-pill"></span>
+            Bizimle iletişime geçin
+        </div>
+    </div>
+    <div class="contact-row">
+        <form method="POST" action="{{ url_for('contact') }}">
+            <div class="form-row">
+                <input class="form-field" type="text" name="name" placeholder="Adınız" required>
+                <input class="form-field" type="text" name="surname" placeholder="Soyadınız" required>
+            </div>
+            <input class="form-field" type="email" name="email" placeholder="E-posta adresiniz" required>
+            <textarea class="form-field" name="message" placeholder="Mesajınız" rows="5" required></textarea>
+            <button type="submit" class="btn-send">Mesajı Gönder</button>
+        </form>
+        <div class="contact-info-block">
+            <div>
+                <div class="ci-label">E-Posta</div>
+                <div class="ci-value"><a href="mailto:info@sportsqr.com.tr">info@sportsqr.com.tr</a></div>
+            </div>
+            <div>
+                <div class="ci-label">İş birlikleri</div>
+                <div class="ci-desc">Reklam, sponsorluk ve diğer iş birlikleri için bize ulaşın. En kısa sürede dönüş yapacağız.</div>
+            </div>
+            <div>
+                <div class="ci-label">Sosyal medya</div>
+                <div class="ci-socials">
+                    <a href="https://www.tiktok.com/@sportsqr" target="_blank" class="ci-social-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.18 8.18 0 004.79 1.54V6.82a4.85 4.85 0 01-1.02-.13z"/></svg>
+                        TikTok
+                    </a>
+                    <a href="https://www.instagram.com/sports.qr/" target="_blank" class="ci-social-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                        Instagram
+                    </a>
+                    <a href="https://www.youtube.com/@sportsqr" target="_blank" class="ci-social-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.01 3.01 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3.01 3.01 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3.01 3.01 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3.01 3.01 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+                        YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-copy">© 2025 Sports QR — Tüm hakları saklıdır.</div>
+    <div class="footer-brand">SPORTS<span>QR</span></div>
+</footer>
 
 </body>
 </html>
